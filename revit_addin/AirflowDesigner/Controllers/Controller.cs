@@ -47,7 +47,7 @@ namespace AirflowDesigner.Controllers
                 XYZ location = (vav.Location as LocationPoint).Point;
 
                 Objects.Node n = new Objects.Node() { Location = location, Name = "VAV-" + vav.Id.IntegerValue, NodeType = Objects.Node.NodeTypeEnum.Vav };
-                nodes.Add(n);
+               
 
                 // determine the related space.
                 var relatedSpace = vav.get_Space(phase);
@@ -66,8 +66,12 @@ namespace AirflowDesigner.Controllers
                     nodes.Add(connNode);
                 }
 
+                // adding this later.
+                nodes.Add(n);
+
                 // make an edge from VAV to corridor.
                 Objects.Edge edge = new Objects.Edge() { Node1 = n.Id, Node2 = connNode.Id, Distance = n.Location.DistanceTo(connNode.Location) };
+                log("Made edge from " + n.Name + " to " + connNode.Name);
                 edges.Add(edge);
 
             }
@@ -82,6 +86,7 @@ namespace AirflowDesigner.Controllers
                 string name = (String.IsNullOrEmpty(mark.AsString()) ? shaft.Id.IntegerValue.ToString() : mark.AsString());
                 Objects.Node n = new Objects.Node() { Location = location, Name = "Shaft-" + name, NodeType = Objects.Node.NodeTypeEnum.Shaft };
 
+              
                 // now we need to find where this connects to the 
 
                 //CURRENT SIMPLIFICATION: NO SHAFT WILL BE ON TOP OF A CENTERLINE.
@@ -96,8 +101,12 @@ namespace AirflowDesigner.Controllers
                     connNode = new Objects.Node() { NodeType = Objects.Node.NodeTypeEnum.Other, Name = "Corridor-To-Shaft", Location = connection };
                     nodes.Add(connNode);
                 }
+                // add this later.
+                nodes.Add(n);
+
                 // make an edge that connects
                 Objects.Edge edge = new Objects.Edge() { Node1 = connNode.Id, Node2 = n.Id, Distance = (connNode.Location.DistanceTo(n.Location)) };
+                log("Made edge from " + connNode.Name + " to " + n.Name);
                 edges.Add(edge);
             }
 
@@ -131,6 +140,7 @@ namespace AirflowDesigner.Controllers
                 for (int i = 1; i < onLine.Count; i++)
                 {
                     Objects.Edge corrEdge = new Objects.Edge() { Node1 = onLine[i - 1].Id, Node2 = onLine[i].Id, Distance = onLine[i - 1].Location.DistanceTo(onLine[i].Location) };
+                    log("Made corridor edge from " + onLine[i - 1].Name + " to " + onLine[i].Name);
                     edges.Add(corrEdge);
                 }
 
@@ -312,13 +322,17 @@ namespace AirflowDesigner.Controllers
             foreach (var node in nodes)
             {
                 var result = cl.Project(node.Location);
-                if ((result != null) && (result.Distance == 0)) onLine.Add(node);
+                if ((result != null) && (result.Distance < 0.001)) onLine.Add(node);
             }
 
             return onLine;
         }
 
-
+        private void log(string msg)
+        {
+            System.Diagnostics.Debug.WriteLine(msg);
+            _uiDoc.Application.Application.WriteJournalComment(msg, false);
+        }
         private Objects.Node lookupExisting( XYZ point, IList<Objects.Node> nodes)
         {
             double tolerance = 0.1;
