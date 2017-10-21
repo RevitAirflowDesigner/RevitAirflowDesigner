@@ -13,13 +13,14 @@ namespace AirflowDesigner
 
         public Result OnShutdown(UIControlledApplication application)
         {
-            _app = application;
-            buildUI();
+          
             return Result.Succeeded;
         }
 
         public Result OnStartup(UIControlledApplication application)
         {
+            _app = application;
+            buildUI();
             return Result.Succeeded;
         }
 
