@@ -62,6 +62,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Objects\Network.cs" />
+    <Compile Include="Objects\Edge.cs" />
     <Compile Include="Objects\Node.cs" />
     <Compile Include="Objects\Space.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
