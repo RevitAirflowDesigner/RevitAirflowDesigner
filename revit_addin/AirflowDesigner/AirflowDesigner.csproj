@@ -54,6 +54,12 @@
   <ItemGroup>
     <Compile Include="Command.cs" />
     <Compile Include="Controllers\Controller.cs" />
+    <Compile Include="DisplaySolutions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DisplaySolutions.Designer.cs">
+      <DependentUpon>DisplaySolutions.cs</DependentUpon>
+    </Compile>
     <Compile Include="ExternalApp.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
