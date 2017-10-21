@@ -152,6 +152,14 @@ namespace AirflowDesigner.Controllers
 
         }
 
+        public void Serialize(Objects.Network nw, string filename)
+        {
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(nw);
+
+            System.IO.File.WriteAllText(filename, json);
+
+        }
+
         public void DrawNetwork(Objects.Network nw)
         {
             Transaction t = null;

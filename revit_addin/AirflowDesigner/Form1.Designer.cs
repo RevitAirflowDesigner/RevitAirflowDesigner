@@ -35,6 +35,7 @@
             this.llShafts = new System.Windows.Forms.LinkLabel();
             this.btnGo = new System.Windows.Forms.Button();
             this.llCorridors = new System.Windows.Forms.LinkLabel();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
             // label1
@@ -109,6 +110,10 @@
             this.llCorridors.TabStop = true;
             this.llCorridors.Text = "Number of Corridor Lines:";
             // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.Filter = "*.json|JSON Files(*.json)|*.*|All Files";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -137,5 +142,6 @@
         private System.Windows.Forms.LinkLabel llShafts;
         private System.Windows.Forms.Button btnGo;
         private System.Windows.Forms.LinkLabel llCorridors;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }

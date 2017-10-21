@@ -58,9 +58,21 @@ namespace AirflowDesigner
         {
             try
             {
-                var network = _controller.BuildNetwork(_spaces, _vavs, _shafts, _lines);
+                
 
-                _controller.DrawNetwork(network);
+                // prompt the user for the output file.
+                if (saveFileDialog1.ShowDialog(this) == DialogResult.OK)
+                {
+                    var network = _controller.BuildNetwork(_spaces, _vavs, _shafts, _lines);
+
+                    _controller.DrawNetwork(network);
+
+                    _controller.Serialize(network, saveFileDialog1.FileName);
+
+                    MessageBox.Show("The duct network has been saved.");
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
 
             }
             catch (Exception ex)
