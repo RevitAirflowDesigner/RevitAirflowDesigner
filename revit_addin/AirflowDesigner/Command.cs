@@ -18,6 +18,8 @@ namespace AirflowDesigner
             try
             {
 
+
+                return Result.Succeeded;
             }
             catch (ApplicationException aex)
             {
@@ -25,10 +27,14 @@ namespace AirflowDesigner
             }
             catch (Exception ex)
             {
+                TaskDialog td = new TaskDialog("Error");
+                td.MainContent = "An unexpected error occurred: " + Environment.NewLine + ex.GetType().Name + ": " + ex.Message;
+                td.ExpandedContent = ex.StackTrace;
 
+                td.Show();
             }
 
-            return Result.Succeeded;
+            return Result.Failed;
         }
     }
 }
