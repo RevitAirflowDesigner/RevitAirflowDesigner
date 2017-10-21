@@ -58,7 +58,8 @@ namespace AirflowDesigner
         {
             try
             {
-                
+
+                saveFileDialog1.FileName = getDefaultName();
 
                 // prompt the user for the output file.
                 if (saveFileDialog1.ShowDialog(this) == DialogResult.OK)
@@ -79,6 +80,18 @@ namespace AirflowDesigner
             {
                 MessageBox.Show("Error: " + ex.GetType().Name + ": " + ex.Message + Environment.NewLine + ex.StackTrace);
             }
+        }
+
+        private string getDefaultName()
+        {
+            string prefix = _controller.getDefaultPrefix();
+            if (String.IsNullOrEmpty(prefix) == false)
+            {
+                prefix = prefix + ".json";
+                return prefix;
+            }
+
+            return String.Empty;
         }
     }
 }

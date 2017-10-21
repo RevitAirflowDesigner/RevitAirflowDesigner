@@ -1,4 +1,6 @@
 ﻿using Autodesk.Revit.DB;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +17,7 @@ namespace AirflowDesigner.Objects
         public int Id { get; private set; }
         public string Name { get; set; }
 
+        [JsonConverter(typeof(StringEnumConverter))]
         public NodeTypeEnum NodeType { get; set; }
 
         public XYZ Location { get; set; }

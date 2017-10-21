@@ -37,7 +37,8 @@ namespace AirflowDesigner.Controllers
             List<Objects.Edge> edges = new List<Objects.Edge>();
             network.Edges = edges;
             network.Nodes = nodes;
-            
+            network.Spaces = spaces.ToList();
+
 
             // figure out the current phase.
             Phase phase = _uiDoc.Document.GetElement(_uiDoc.ActiveGraphicalView.get_Parameter(BuiltInParameter.VIEW_PHASE).AsElementId()) as Phase;
@@ -158,6 +159,18 @@ namespace AirflowDesigner.Controllers
 
             System.IO.File.WriteAllText(filename, json);
 
+        }
+
+        public string getDefaultPrefix()
+        {
+            // we want it to be based on the location of the file.
+
+            if (String.IsNullOrEmpty(_uiDoc.Document.PathName))
+            {
+                return null;
+            }
+
+            return _uiDoc.Document.PathName.Replace(".rvt", "");
         }
 
         public void DrawNetwork(Objects.Network nw)
