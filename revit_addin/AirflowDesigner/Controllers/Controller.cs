@@ -44,6 +44,7 @@ namespace AirflowDesigner.Controllers
 
                 Parameter airflow = revitSpace.get_Parameter(BuiltInParameter.ROOM_DESIGN_SUPPLY_AIRFLOW_PARAM);
                 space.Airflow = airflow.AsDouble() * 60.0; // conversion.
+                spaces.Add(space);
 
                 // now get all of the space boundary stuff.
 
@@ -96,7 +97,7 @@ namespace AirflowDesigner.Controllers
                 {
                     // check that it's actually a VAV box, based on 
                     Element typeElem = _uiDoc.Document.GetElement(elem.GetTypeId());
-                    Parameter sched = elem.GetParameters("SCHEDULE_TYPE").FirstOrDefault();
+                    Parameter sched = typeElem.GetParameters("SCHEDULE_TYPE").FirstOrDefault();
                     if ((sched != null) && (sched.AsString().ToUpper() == "AIR_TERMINAL_BOX"))
                     {
                         fis.Add(elem as FamilyInstance);
@@ -119,6 +120,26 @@ namespace AirflowDesigner.Controllers
             }
 
             return fis;
+        }
+
+        public IList<Line> GetAllCorridorLines()
+        {
+            FilteredElementCollector coll = new FilteredElementCollector(_uiDoc.Document, _uiDoc.ActiveGraphicalView.Id);
+            var mlines = coll.OfClass(typeof(ModelLine)).WhereElementIsNotElementType().OfType<ModelLine>().Cast<ModelLine>();
+
+            List<Line> lines = new List<Line>();
+            foreach(var mline in mlines)
+            {
+                // check the subcategory.
+                if (mline.Subcategory.Name.ToUpper() == "DUCT")
+                {
+                    if (mline.GeometryCurve is Line) lines.Add(mline.GeometryCurve as Line);
+                }
+                
+            }
+
+            return lines;
+            
         }
         #endregion
 
