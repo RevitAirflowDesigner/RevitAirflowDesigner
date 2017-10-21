@@ -18,6 +18,9 @@ namespace AirflowDesigner
             try
             {
 
+                Form1 f = new Form1(new Controllers.Controller(commandData.Application.ActiveUIDocument));
+
+                f.ShowDialog();
 
                 return Result.Succeeded;
             }
