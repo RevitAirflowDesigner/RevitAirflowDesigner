@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Mechanical;
 
+
 namespace AirflowDesigner.Controllers
 {
     public class Controller
@@ -31,8 +32,12 @@ namespace AirflowDesigner.Controllers
             // then project the VAV onto the corridor lines.
             // then build the edges...
 
+            Objects.Network network = new Objects.Network();
             List<Objects.Node> nodes = new List<Objects.Node>();
             List<Objects.Edge> edges = new List<Objects.Edge>();
+            network.Edges = edges;
+            network.Nodes = nodes;
+            
 
             // figure out the current phase.
             Phase phase = _uiDoc.Document.GetElement(_uiDoc.ActiveGraphicalView.get_Parameter(BuiltInParameter.VIEW_PHASE).AsElementId()) as Phase;
@@ -42,17 +47,96 @@ namespace AirflowDesigner.Controllers
                 XYZ location = (vav.Location as LocationPoint).Point;
 
                 Objects.Node n = new Objects.Node() { Location = location, Name = "VAV-" + vav.Id.IntegerValue, NodeType = Objects.Node.NodeTypeEnum.Vav };
+                nodes.Add(n);
 
                 // determine the related space.
                 var relatedSpace = vav.get_Space(phase);
                 if (relatedSpace != null) n.SpaceId = relatedSpace.UniqueId;
 
+                // while we are at it, get the connection point to the corridor
+                XYZ connection = getClosest(location, corridorLines, true);
+
+                // does this node already exist?
+                Objects.Node connNode = lookupExisting(location, nodes);
+
+                if (connNode == null)
+                {
+                    // make a new one.
+                    connNode = new Objects.Node() { NodeType = Objects.Node.NodeTypeEnum.Other, Name = "Corridor", Location = connection };
+                    nodes.Add(connNode);
+                }
+
+                // make an edge from VAV to corridor.
+                Objects.Edge edge = new Objects.Edge() { Node1 = n.Id, Node2 = connNode.Id, Distance = n.Location.DistanceTo(connNode.Location) };
+                edges.Add(edge);
+
             }
 
-            // project onto nearest corridor line, and make an edge.
+            // now let's do the same thing with the shaft.
+            foreach( var shaft in shafts)
+            {
+                XYZ location = (shaft.Location as LocationPoint).Point;
 
-            return new Objects.Network();
+                // shaft name is based on the mark
+                Parameter mark = shaft.get_Parameter(BuiltInParameter.ALL_MODEL_MARK);
 
+                Objects.Node n = new Objects.Node() { Location = location, Name = "Shaft-" };
+
+            }
+
+            // then we need to connect the corridor nodes 
+            foreach( var cl in corridorLines )
+            {
+                // for each centerline, we want the endpoints of the centerline, and an ordered list of edges that cover it (including all of the midpoints from nodes).
+
+                IList<Objects.Node> onLine = getNodesOnLine(cl, nodes);
+
+                // see if we have to add the endpoints, or if they're already there.
+                Objects.Node n1 = lookupExisting(cl.GetEndPoint(0), nodes);
+                Objects.Node n2 = lookupExisting(cl.GetEndPoint(1), nodes);
+                if (n1 == null)
+                {
+                    n1 = new Objects.Node() { Location = cl.GetEndPoint(0), NodeType = Objects.Node.NodeTypeEnum.Other, Name = "CorridorEnd" };
+                    onLine.Add(n1);
+                    nodes.Add(n1);
+                }
+                if (n2 == null)
+                {
+                    n2 = new Objects.Node() { Location = cl.GetEndPoint(1), NodeType = Objects.Node.NodeTypeEnum.Other, Name = "CorridorEnd" };
+                    onLine.Add(n2);
+                    nodes.Add(n2);
+                }
+
+                // now we want to sort these things based on the distance from n1.
+                onLine = onLine.OrderBy(n => n.Location.DistanceTo(n1.Location)).ToList();
+
+                // make edges between each thing.
+                for (int i = 1; i < onLine.Count; i++)
+                {
+                    Objects.Edge corrEdge = new Objects.Edge() { Node1 = onLine[i - 1].Id, Node2 = onLine[i].Id, Distance = onLine[i - 1].Location.DistanceTo(onLine[i].Location) };
+                    edges.Add(corrEdge);
+                }
+
+            }
+
+
+
+            return network;
+
+        }
+
+        private IList<Objects.Node> getNodesOnLine(Line cl, IList<Objects.Node> nodes)
+        {
+            // find all of the nodes that are on the given line.
+            List<Objects.Node> onLine = new List<Objects.Node>();
+
+            foreach( var node in nodes )
+            {
+                var result = cl.Project(node.Location);
+                if ((result != null) && (result.Distance == 0)) onLine.Add(node);
+            }
+
+            return onLine;
         }
 
         public IList<Objects.Space> GetAllSpaces()
@@ -147,7 +231,7 @@ namespace AirflowDesigner.Controllers
 
             foreach( var elem in coll.ToElements())
             {
-                if (elem.Name.ToUpper() == "SHAFT") fis.Add(elem as FamilyInstance);
+                if (elem.Name.ToUpper() == "MECHANICAL SHAFT") fis.Add(elem as FamilyInstance);
             }
 
             return fis;
@@ -175,19 +259,63 @@ namespace AirflowDesigner.Controllers
         #endregion
 
         #region PrivateMethods
-        //private XYZ getClosest( XYZ point, IList<Line> lines)
-        //{
-        //    double nearest = 99999;
-        //    foreach( var line in lines )
-        //    {
-        //        IntersectionResult res = line.Project(point);
 
-        //        if (res != null)
-        //        {
-        //            nearest = res.
-        //        }
-        //    }
-        //}
+        private Objects.Node lookupExisting( XYZ point, IList<Objects.Node> nodes)
+        {
+            double tolerance = 0.1;
+
+            foreach( var node in nodes )
+            {
+                if (node.Location.DistanceTo(point) < tolerance) return node;
+            }
+
+            return null;
+        }
+        private XYZ getClosest(XYZ point, IList<Line> lines, bool includeEnds)
+        {
+            // preferably get a normal projection. if requested fallback to nearest edge.
+            double nearest = 99999;
+            bool foundOne = false;
+            XYZ outputXYZ = null;
+            foreach (var line in lines)
+            {
+                IntersectionResult res = line.Project(point);
+
+                if (res != null)
+                {
+                    foundOne = true;
+                    if (res.Distance < nearest)
+                    {
+                        nearest = res.Distance;
+                        outputXYZ = res.XYZPoint;
+                    }
+                }
+            }
+
+            if (foundOne) return outputXYZ;
+
+            // if we didn't find one, consider endpoints if we are allowed.
+            if (includeEnds == false) return null;
+
+            foreach( var line in lines )
+            {
+                XYZ p1 = line.GetEndPoint(0);
+                XYZ p2 = line.GetEndPoint(1);
+
+                if (p1.DistanceTo(point) < nearest)
+                {
+                    nearest = p1.DistanceTo(point);
+                    outputXYZ = p1;
+                }
+                if (p2.DistanceTo(point) < nearest)
+                {
+                    nearest = p2.DistanceTo(point);
+                    outputXYZ = p2;
+                }
+            }
+
+            return outputXYZ;
+        }
         #endregion
 
 

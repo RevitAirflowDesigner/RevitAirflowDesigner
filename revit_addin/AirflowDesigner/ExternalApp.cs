@@ -34,7 +34,12 @@ namespace AirflowDesigner
             //save.LargeImage = getImage("LifeSaver.Images.lifesaver-32.png");
             //save.Image = getImage("LifeSaver.Images.lifesaver-16.png");
 
+            var load = new PushButtonData("Load AirflowDesigner", "Load Airflow Designer", System.Reflection.Assembly.GetExecutingAssembly().Location, "AirflowDesigner.LoadCommand");
+            load.ToolTip = "Load, Display and Generate";
+            load.LongDescription = "Load, display and generate layout based on Selected Options";
+
             panel.AddItem(save);
+            panel.AddItem(load);
         }
     }
 }
