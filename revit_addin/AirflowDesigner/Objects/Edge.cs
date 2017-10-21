@@ -8,11 +8,10 @@ namespace AirflowDesigner.Objects
 {
     public class Edge
     {
-        public Node Pt0 { get; set; }
-        public Node Pt1 { get; set; }
-
+        public int Node1 { get; set; }
+        public int Node2 { get; set; }
         public double Distance { get; set; }
-
+        public double Diameter { get; set; }
         public double Airflow { get; set; }
     }
 }
