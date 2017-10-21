@@ -6475,6 +6475,210 @@ This class encapsulates IUIAnimationTransition interface and serves as a base cl
    2017.2
 </since>
     </member>
+    <member name="M:Autodesk.Revit.UI.UIFabricationUtils.GetCanFinishChangeService(Autodesk.Revit.DB.Document)">
+      <summary>
+   Checks if Change Service can finish or not.
+</summary>
+      <param name="doc">
+   The document.
+</param>
+      <returns>
+   Gets whether Change Service can finish or not.
+</returns>
+      <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
+   A non-optional argument was NULL
+</exception>
+      <since>
+   2016
+</since>
+    </member>
+    <member name="M:Autodesk.Revit.UI.UIFabricationUtils.SetCanFinishChangeService(Autodesk.Revit.DB.Document,System.Boolean)">
+      <summary>
+   Sets if finishing Change Service is allowed or not.
+</summary>
+      <param name="doc">
+   The document.
+</param>
+      <param name="canFinish">
+   Sets whether we can finish Change Service or not.
+</param>
+      <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
+   A non-optional argument was NULL
+</exception>
+      <since>
+   2016
+</since>
+    </member>
+    <member name="M:Autodesk.Revit.UI.UIFabricationUtils.CancelSwapOutMode">
+      <summary>
+   Cancels the service and size swap out modes.
+</summary>
+      <since>
+   2016
+</since>
+    </member>
+    <member name="M:Autodesk.Revit.UI.UIFabricationUtils.FinishSwapOutMode">
+      <summary>
+   Finishes the service and size swap out modes.
+</summary>
+      <since>
+   2016
+</since>
+    </member>
+    <member name="M:Autodesk.Revit.UI.UIFabricationUtils.SetServiceSwapOutShapeForMouseOver(Autodesk.Revit.DB.Document,System.Int32,Autodesk.Revit.DB.ConnectorProfileType)">
+      <summary>
+   Sets the shape information to select the elements in the model from moused-over shapes.
+</summary>
+      <param name="document">
+   The document.
+</param>
+      <param name="serviceId">
+   The fabrication service identifier.
+</param>
+      <param name="shape">
+   The shape of the parts to be selected.
+</param>
+      <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
+   A non-optional argument was NULL
+</exception>
+      <exception cref="T:Autodesk.Revit.Exceptions.ArgumentOutOfRangeException">
+   A value passed for an enumeration argument is not a member of that enumeration
+</exception>
+      <since>
+   2016
+</since>
+    </member>
+    <member name="M:Autodesk.Revit.UI.UIFabricationUtils.ServiceSwapOutPartTypeMouseOver(Autodesk.Revit.DB.Document,System.Int32)">
+      <summary>
+   Sets the required information to select the part types in the model from the moused-over fittings.
+</summary>
+      <param name="document">
+   The document.
+</param>
+      <param name="partTypeId">
+   The part type Id. Pass -1 to select none.
+</param>
+      <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
+   A non-optional argument was NULL
+</exception>
+      <since>
+   2016
+</since>
+    </member>
+    <member name="M:Autodesk.Revit.UI.UIFabricationUtils.SetServiceSwapOutServiceIdForMouseOver(Autodesk.Revit.DB.Document,System.Int32)">
+      <summary>
+   Sets the service id to select the elements in the model from the moused-over service.
+</summary>
+      <param name="document">
+   The document.
+</param>
+      <param name="serviceId">
+   The service id.
+</param>
+      <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
+   A non-optional argument was NULL
+</exception>
+      <since>
+   2016
+</since>
+    </member>
+    <member name="M:Autodesk.Revit.UI.UIFabricationUtils.SetServiceSwapOutSizesForMouseOver(Autodesk.Revit.DB.Document,System.Int32,Autodesk.Revit.DB.ConnectorProfileType,System.Double,System.Double)">
+      <summary>
+   Sets the required information to select the elements in the model from the moused-over sizes.
+</summary>
+      <param name="document">
+   The document.
+</param>
+      <param name="serviceId">
+   The fabrication service identifier.
+</param>
+      <param name="profileType">
+   The shape of the parts to be selected.
+</param>
+      <param name="widthOrDiameter">
+   The width or diameter of the parts to be selected.
+</param>
+      <param name="depth">
+   The depth of the parts to be selected. Pass 0 if the profile type is Round.
+</param>
+      <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
+   A non-optional argument was NULL
+</exception>
+      <exception cref="T:Autodesk.Revit.Exceptions.ArgumentOutOfRangeException">
+   A value passed for an enumeration argument is not a member of that enumeration
+</exception>
+      <since>
+   2016
+</since>
+    </member>
+    <member name="M:Autodesk.Revit.UI.UIFabricationUtils.SetServiceSwapOutSizeMappings(Autodesk.Revit.DB.Document,System.Collections.Generic.ISet{Autodesk.Revit.DB.Fabrication.FabricationPartSizeMap})">
+      <summary>
+   Sets the service swap out size mappings
+</summary>
+      <param name="document">
+   The document.
+</param>
+      <param name="mappings">
+   The service swap out size mappings.
+</param>
+      <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
+   A non-optional argument was NULL
+</exception>
+      <since>
+   2019
+</since>
+    </member>
+    <member name="M:Autodesk.Revit.UI.UIFabricationUtils.SetServiceSwapOutPartTypeMappings(Autodesk.Revit.DB.Document,System.Collections.Generic.IDictionary{Autodesk.Revit.DB.ElementId,Autodesk.Revit.DB.ElementId})">
+      <summary>
+   Sets the service swap out part type mappings
+</summary>
+      <param name="document">
+   The document.
+</param>
+      <param name="mappings">
+   The service swap out part type mappings.
+</param>
+      <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
+   A non-optional argument was NULL
+</exception>
+      <since>
+   2019
+</since>
+    </member>
+    <member name="M:Autodesk.Revit.UI.UIFabricationUtils.SetServiceGroupForSwapOut(Autodesk.Revit.DB.Document,System.Int32)">
+      <summary>
+   Sets the service group for service swap out.
+</summary>
+      <param name="document">
+   The document.
+</param>
+      <param name="groupIndex">
+   The service group index.
+</param>
+      <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
+   A non-optional argument was NULL
+</exception>
+      <since>
+   2016
+</since>
+    </member>
+    <member name="M:Autodesk.Revit.UI.UIFabricationUtils.SetServiceForSwapOut(Autodesk.Revit.DB.Document,System.Int32)">
+      <summary>
+   Sets the service for service swap out.
+</summary>
+      <param name="document">
+   The document.
+</param>
+      <param name="serviceId">
+   The service id.
+</param>
+      <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
+   A non-optional argument was NULL
+</exception>
+      <since>
+   2016
+</since>
+    </member>
     <member name="M:Autodesk.Revit.UI.UIFabricationUtils.GetUnitsElementId(Autodesk.Revit.DB.Document)">
       <summary>
    Gets the id of the units element (object of UnitsElem) of the Revit units settings
@@ -6545,6 +6749,63 @@ This class encapsulates IUIAnimationTransition interface and serves as a base cl
       <param name="selectedTypeId">
    The fabrication part type id that is currently selected in the Fabrication Part Browser.
 </param>
+      <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
+   A non-optional argument was NULL
+</exception>
+      <since>
+   2016
+</since>
+    </member>
+    <member name="M:Autodesk.Revit.UI.UIFabricationUtils.SetupFabricationPrinters(Autodesk.Revit.DB.Document,System.Int32)">
+      <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
+   A non-optional argument was NULL
+</exception>
+      <since>
+   2016
+</since>
+    </member>
+    <member name="M:Autodesk.Revit.UI.UIFabricationUtils.SetFabricationPrinterToDefault(Autodesk.Revit.DB.Document,System.Int32)">
+      <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
+   A non-optional argument was NULL
+</exception>
+      <since>
+   2016
+</since>
+    </member>
+    <member name="M:Autodesk.Revit.UI.UIFabricationUtils.GetFabricationPrinterFile(Autodesk.Revit.DB.Document,System.Int32)">
+      <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
+   A non-optional argument was NULL
+</exception>
+      <since>
+   2016
+</since>
+    </member>
+    <member name="M:Autodesk.Revit.UI.UIFabricationUtils.SetupFabricationReports(Autodesk.Revit.DB.Document,Autodesk.Revit.FabricationReportType,System.Collections.Generic.IList{Autodesk.Revit.DB.ElementId})">
+      <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
+   A non-optional argument was NULL
+</exception>
+      <exception cref="T:Autodesk.Revit.Exceptions.ArgumentOutOfRangeException">
+   A value passed for an enumeration argument is not a member of that enumeration
+</exception>
+      <since>
+   2016
+</since>
+    </member>
+    <member name="M:Autodesk.Revit.UI.UIFabricationUtils.PrintFabricationReports(Autodesk.Revit.DB.Document,System.Collections.Generic.IList{Autodesk.Revit.DB.ElementId})">
+      <returns>
+   returns if any reports were printed
+</returns>
+      <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
+   A non-optional argument was NULL
+</exception>
+      <since>
+   2016
+</since>
+    </member>
+    <member name="M:Autodesk.Revit.UI.UIFabricationUtils.EditConfiguration(Autodesk.Revit.DB.Document,System.String,System.String)">
+      <returns>
+   returns if the configuration was changed
+</returns>
       <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
    A non-optional argument was NULL
 </exception>
@@ -6795,6 +7056,96 @@ This class encapsulates IUIAnimationTransition interface and serves as a base cl
       <since>
    2016
 </since>
+    </member>
+    <member name="T:Autodesk.Revit.FabricationReportType">
+      <summary>
+   Types of Fabrication Reports
+</summary>
+    </member>
+    <member name="F:Autodesk.Revit.FabricationReportType.LinearNestReportPrint">
+      <summary>
+   linear nest reports
+</summary>
+    </member>
+    <member name="F:Autodesk.Revit.FabricationReportType.DrawableWorksheetPrint">
+      <summary>
+   3D worksheets
+</summary>
+    </member>
+    <member name="F:Autodesk.Revit.FabricationReportType.AncillaryReportPrint">
+      <summary>
+   ancillary reports
+</summary>
+    </member>
+    <member name="F:Autodesk.Revit.FabricationReportType.PartWorksheetPrint">
+      <summary>
+   part worksheets
+</summary>
+    </member>
+    <member name="F:Autodesk.Revit.FabricationReportType.AirturnLabelPrint">
+      <summary>
+   airturn labels
+</summary>
+    </member>
+    <member name="F:Autodesk.Revit.FabricationReportType.DecoilerLabelPrint">
+      <summary>
+   decoiler labels
+</summary>
+    </member>
+    <member name="F:Autodesk.Revit.FabricationReportType.NestLabelPrint">
+      <summary>
+   nest labels
+</summary>
+    </member>
+    <member name="F:Autodesk.Revit.FabricationReportType.ItemWorksheetPrint">
+      <summary>
+   item worksheets
+</summary>
+    </member>
+    <member name="F:Autodesk.Revit.FabricationReportType.ItemLabelPrint">
+      <summary>
+   item labels
+</summary>
+    </member>
+    <member name="F:Autodesk.Revit.FabricationReportType.OversizedLabelPrint">
+      <summary>
+   oversize labels
+</summary>
+    </member>
+    <member name="F:Autodesk.Revit.FabricationReportType.MachineUseReportPrint">
+      <summary>
+   machine usage
+</summary>
+    </member>
+    <member name="F:Autodesk.Revit.FabricationReportType.PartReportPrint">
+      <summary>
+   nest prints
+</summary>
+    </member>
+    <member name="F:Autodesk.Revit.FabricationReportType.NestReportPrint">
+      <summary>
+   nest prints
+</summary>
+    </member>
+    <member name="F:Autodesk.Revit.FabricationReportType.PartLabelPrint">
+      <summary>
+   part labels
+</summary>
+    </member>
+    <member name="F:Autodesk.Revit.FabricationReportType.ItemReportPrint">
+      <summary>
+   item reports
+</summary>
+    </member>
+    <member name="F:Autodesk.Revit.FabricationReportType.NestPrint">
+      <summary>
+   nest prints
+</summary>
+    </member>
+    <member name="F:Autodesk.Revit.FabricationReportType.Unknown">
+      <summary>
+   Unknown report type
+</summary>
     </member>
     <member name="P:Autodesk.Revit.UI.UISaveAsOptions.IsValidObject">
       <summary>
@@ -13193,6 +13544,7 @@ The ability to modify the property is reserved for future implementations.</rema
 </since>
       <example>
         <code lang="C#" source="..\..\..\RevitAdditions\Source\Addons\Snippets\CSharpSnippets\CS\Autodesk_Revit\EmbedWebBrowser.cs" region="Autodesk.Revit.UI.IDockablePaneProvider" />
+        <code lang="VB" source="..\..\..\RevitAdditions\Source\Addons\Snippets\VBNETSnippets\Autodesk_Revit\EmbedWebBrowser.vb" region="Autodesk.Revit.UI.IDockablePaneProvider" />
       </example>
     </member>
     <member name="P:Autodesk.Revit.UI.DockablePaneProviderData.VisibleByDefault">
@@ -13331,6 +13683,7 @@ The ability to modify the property is reserved for future implementations.</rema
 </since>
       <example>
         <code lang="C#" source="..\..\..\RevitAdditions\Source\Addons\Snippets\CSharpSnippets\CS\Autodesk_Revit\EmbedWebBrowser.cs" region="Autodesk.Revit.UI.IFrameworkElementCreator" />
+        <code lang="VB" source="..\..\..\RevitAdditions\Source\Addons\Snippets\VBNETSnippets\Autodesk_Revit\EmbedWebBrowser.vb" region="Autodesk.Revit.UI.IFrameworkElementCreator" />
       </example>
     </member>
     <member name="M:Autodesk.Revit.UI.DockablePane.PaneExists(Autodesk.Revit.UI.DockablePaneId)">
@@ -14533,6 +14886,77 @@ The new item may be created as a large-size vertical control in the panel.</rema
    The event arguments used by the Idling event.
 </summary>
     </member>
+    <member name="M:Autodesk.Revit.UI.Events.FabricationPartBrowserChangedEventArgs.GetServiceSwapOutInitialSizes">
+      <summary>
+   Gets the service swap out initial sizes.
+</summary>
+      <returns>
+   Returns the service swap out initial sizes.
+</returns>
+      <since>
+   2017
+</since>
+    </member>
+    <member name="M:Autodesk.Revit.UI.Events.FabricationPartBrowserChangedEventArgs.SwitchToInlineFittingsTab">
+      <summary>
+   Makes the innline fittings tab active in the Change Service window.
+</summary>
+      <since>
+   2017
+</since>
+    </member>
+    <member name="M:Autodesk.Revit.UI.Events.FabricationPartBrowserChangedEventArgs.GetServiceSwapOutProfiles">
+      <summary>
+   Gets the service swap out profile types.
+</summary>
+      <since>
+   2017
+</since>
+    </member>
+    <member name="M:Autodesk.Revit.UI.Events.FabricationPartBrowserChangedEventArgs.GetServiceSwapOutDomain">
+      <summary>
+   Gets the service swap out domain.
+</summary>
+      <returns>
+   The domain type.
+</returns>
+      <since>
+   2017
+</since>
+    </member>
+    <member name="M:Autodesk.Revit.UI.Events.FabricationPartBrowserChangedEventArgs.GetServiceSwapOutSizeMappings">
+      <summary>
+   Gets the set of service swap out size mappings.
+</summary>
+      <returns>
+   The set of service swap out size mappings.
+</returns>
+      <since>
+   2017
+</since>
+    </member>
+    <member name="M:Autodesk.Revit.UI.Events.FabricationPartBrowserChangedEventArgs.GetServiceSwapOutPartTypeMappings">
+      <summary>
+   Gets the set of service swap out part type mappings.
+</summary>
+      <returns>
+   The set of service swap out part type mappings.
+</returns>
+      <since>
+   2017
+</since>
+    </member>
+    <member name="M:Autodesk.Revit.UI.Events.FabricationPartBrowserChangedEventArgs.GetServiceSwapOutServiceIds">
+      <summary>
+   Gets the set of service ids to be swapped out.
+</summary>
+      <returns>
+   The set of service ids.
+</returns>
+      <since>
+   2017
+</since>
+    </member>
     <member name="M:Autodesk.Revit.UI.Events.FabricationPartBrowserChangedEventArgs.GetCurrentSolutionPartTypeIds">
       <summary>
    Returns set of fabrication part types that are used in the currently selected solution.
@@ -14617,6 +15041,41 @@ The new item may be created as a large-size vertical control in the panel.</rema
     <member name="T:Autodesk.Revit.UI.Events.FabricationPartBrowserOperation">
       <summary>
    Operations for the FabricationPartBrowserChangedEventArgs Event
+</summary>
+    </member>
+    <member name="F:Autodesk.Revit.UI.Events.FabricationPartBrowserOperation.SwitchToInlineFittingsTab">
+      <summary>
+   Make the inline fittings tab active in Change Service.
+</summary>
+    </member>
+    <member name="F:Autodesk.Revit.UI.Events.FabricationPartBrowserOperation.FinishSizeSwapOutMode">
+      <summary>
+   Finish size swap out mode.
+</summary>
+    </member>
+    <member name="F:Autodesk.Revit.UI.Events.FabricationPartBrowserOperation.StartSizeSwapOutMode">
+      <summary>
+   Start size swap-out mode.
+</summary>
+    </member>
+    <member name="F:Autodesk.Revit.UI.Events.FabricationPartBrowserOperation.UpdateServiceSwapOutSizes">
+      <summary>
+   Service swap out size mappings has changed.
+</summary>
+    </member>
+    <member name="F:Autodesk.Revit.UI.Events.FabricationPartBrowserOperation.UpdateServiceSwapOutPartTypes">
+      <summary>
+   Service swap out part type mappings has changed.
+</summary>
+    </member>
+    <member name="F:Autodesk.Revit.UI.Events.FabricationPartBrowserOperation.FinishServiceSwapOutMode">
+      <summary>
+   Finish service swap-out mode
+</summary>
+    </member>
+    <member name="F:Autodesk.Revit.UI.Events.FabricationPartBrowserOperation.StartServiceSwapOutMode">
+      <summary>
+   Start service swap-out mode
 </summary>
     </member>
     <member name="F:Autodesk.Revit.UI.Events.FabricationPartBrowserOperation.FinishMPRoutingMode">
@@ -15656,6 +16115,7 @@ Hit testing operations
     <!-- Discarding badly formed XML document comment for member 'E:Autodesk.Revit.UI.UIControlledApplication.TransferredProjectStandards'. -->
     <!-- Discarding badly formed XML document comment for member 'P:Autodesk.Revit.UI.Events.DialogBoxShowingEventArgs.DialogId'. -->
     <!-- Discarding badly formed XML document comment for member 'P:Autodesk.Revit.UI.Events.DialogBoxShowingEventArgs.DialogId'. -->
+    <!-- Discarding badly formed XML document comment for member 'P:Autodesk.Revit.UI.DockablePanes.BuiltInDockablePanes.PnIdModelerBrowser'. -->
     <!-- Discarding badly formed XML document comment for member 'M:Autodesk.Revit.UI.IExternalResourceUIServer.HandleLoadResourceResults(Autodesk.Revit.DB.Document,System.Collections.Generic.IList`1{Autodesk.Revit.DB.ExternalResourceLoadData})'. -->
     <!-- Discarding badly formed XML document comment for member 'M:Autodesk.Revit.UI.IExternalResourceUIServerProxy.HandleLoadResourceResults(Autodesk.Revit.DB.Document,System.Collections.Generic.IList`1{Autodesk.Revit.DB.ExternalResourceLoadData})'. -->
     <!-- Discarding badly formed XML document comment for member 'M:Autodesk.Revit.UI.RevitLinkUIUtils.ReportLinkLoadResults(Autodesk.Revit.DB.Document,System.Collections.Generic.IDictionary`2{System.String,Autodesk.Revit.DB.LinkLoadResult})'. -->
