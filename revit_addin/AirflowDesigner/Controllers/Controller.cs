@@ -24,6 +24,9 @@ namespace AirflowDesigner.Controllers
         #endregion
 
         #region PublicMethods
+
+        public 
+
         public IList<Objects.Space> GetAllSpaces()
         {
             // get representations of all spaces in the current view.
@@ -125,13 +128,13 @@ namespace AirflowDesigner.Controllers
         public IList<Line> GetAllCorridorLines()
         {
             FilteredElementCollector coll = new FilteredElementCollector(_uiDoc.Document, _uiDoc.ActiveGraphicalView.Id);
-            var mlines = coll.OfClass(typeof(ModelLine)).WhereElementIsNotElementType().OfType<ModelLine>().Cast<ModelLine>();
+            var mlines = coll.OfClass(typeof(CurveElement)).WhereElementIsNotElementType().OfType<CurveElement>().Cast<ModelCurve>();
 
             List<Line> lines = new List<Line>();
             foreach(var mline in mlines)
             {
                 // check the subcategory.
-                if (mline.Subcategory.Name.ToUpper() == "DUCT")
+                if (mline.LineStyle.Name.ToUpper() == "DUCTWORK")
                 {
                     if (mline.GeometryCurve is Line) lines.Add(mline.GeometryCurve as Line);
                 }
