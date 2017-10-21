@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Mechanical;
 
+
 namespace AirflowDesigner.Controllers
 {
     public class Controller
@@ -66,8 +67,20 @@ namespace AirflowDesigner.Controllers
                 }
 
                 // make an edge from VAV to corridor.
-                Objects.Edge edge = new Objects.Edge() { Pt0 = n.Id, Pt1 = connNode.Id, Distance = n.Location.DistanceTo(connNode.Location) };
+                Objects.Edge edge = new Objects.Edge() { Node1 = n.Id, Node2 = connNode.Id, Distance = n.Location.DistanceTo(connNode.Location) };
                 edges.Add(edge);
+
+            }
+
+            // now let's do the same thing with the shaft.
+            foreach( var shaft in shafts)
+            {
+                XYZ location = (shaft.Location as LocationPoint).Point;
+
+                // shaft name is based on the mark
+                Parameter mark = shaft.get_Parameter(BuiltInParameter.ALL_MODEL_MARK);
+
+                Objects.Node n = new Objects.Node() { Location = location, Name = "Shaft-" };
 
             }
 
@@ -76,7 +89,7 @@ namespace AirflowDesigner.Controllers
             {
                 // for each centerline, we want the endpoints of the centerline, and an ordered list of edges that cover it (including all of the midpoints from nodes).
 
-                IList<Objects.Node> onLine = getNodesOnLine(cl);
+                IList<Objects.Node> onLine = getNodesOnLine(cl, nodes);
 
                 // see if we have to add the endpoints, or if they're already there.
                 Objects.Node n1 = lookupExisting(cl.GetEndPoint(0), nodes);
@@ -85,18 +98,24 @@ namespace AirflowDesigner.Controllers
                 {
                     n1 = new Objects.Node() { Location = cl.GetEndPoint(0), NodeType = Objects.Node.NodeTypeEnum.Other, Name = "CorridorEnd" };
                     onLine.Add(n1);
+                    nodes.Add(n1);
                 }
                 if (n2 == null)
                 {
                     n2 = new Objects.Node() { Location = cl.GetEndPoint(1), NodeType = Objects.Node.NodeTypeEnum.Other, Name = "CorridorEnd" };
                     onLine.Add(n2);
+                    nodes.Add(n2);
                 }
 
                 // now we want to sort these things based on the distance from n1.
                 onLine = onLine.OrderBy(n => n.Location.DistanceTo(n1.Location)).ToList();
 
                 // make edges between each thing.
-                Objects.Edge corrEdge = new Objects.Edge() { };
+                for (int i = 1; i < onLine.Count; i++)
+                {
+                    Objects.Edge corrEdge = new Objects.Edge() { Node1 = onLine[i - 1].Id, Node2 = onLine[i].Id, Distance = onLine[i - 1].Location.DistanceTo(onLine[i].Location) };
+                    edges.Add(corrEdge);
+                }
 
             }
 
@@ -104,6 +123,20 @@ namespace AirflowDesigner.Controllers
 
             return network;
 
+        }
+
+        private IList<Objects.Node> getNodesOnLine(Line cl, IList<Objects.Node> nodes)
+        {
+            // find all of the nodes that are on the given line.
+            List<Objects.Node> onLine = new List<Objects.Node>();
+
+            foreach( var node in nodes )
+            {
+                var result = cl.Project(node.Location);
+                if ((result != null) && (result.Distance == 0)) onLine.Add(node);
+            }
+
+            return onLine;
         }
 
         public IList<Objects.Space> GetAllSpaces()
