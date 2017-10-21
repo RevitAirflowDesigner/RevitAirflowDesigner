@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AirflowDesigner.Objects
 {
-    class Node
+    public class Node
     {
         private static int COUNTER = 0;
         public enum NodeTypeEnum { Vav, Shaft, Other };
