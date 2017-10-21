@@ -79,9 +79,26 @@ namespace AirflowDesigner.Controllers
 
                 // shaft name is based on the mark
                 Parameter mark = shaft.get_Parameter(BuiltInParameter.ALL_MODEL_MARK);
+                string name = (String.IsNullOrEmpty(mark.AsString()) ? shaft.Id.IntegerValue.ToString() : mark.AsString());
+                Objects.Node n = new Objects.Node() { Location = location, Name = "Shaft-" + name, NodeType = Objects.Node.NodeTypeEnum.Shaft };
 
-                Objects.Node n = new Objects.Node() { Location = location, Name = "Shaft-" };
+                // now we need to find where this connects to the 
 
+                //CURRENT SIMPLIFICATION: NO SHAFT WILL BE ON TOP OF A CENTERLINE.
+                // COME BACK AND FIX THIS  LATER!
+
+                XYZ connection = getClosest(location, corridorLines, true);
+
+                Objects.Node connNode = lookupExisting(connection, nodes);
+                if (connNode == null)
+                {
+                    // make a new node
+                    connNode = new Objects.Node() { NodeType = Objects.Node.NodeTypeEnum.Other, Name = "Corridor-To-Shaft", Location = connection };
+                    nodes.Add(connNode);
+                }
+                // make an edge that connects
+                Objects.Edge edge = new Objects.Edge() { Node1 = connNode.Id, Node2 = n.Id, Distance = (connNode.Location.DistanceTo(n.Location)) };
+                edges.Add(edge);
             }
 
             // then we need to connect the corridor nodes 
@@ -125,20 +142,47 @@ namespace AirflowDesigner.Controllers
 
         }
 
-        private IList<Objects.Node> getNodesOnLine(Line cl, IList<Objects.Node> nodes)
+        public void DrawNetwork(Objects.Network nw)
         {
-            // find all of the nodes that are on the given line.
-            List<Objects.Node> onLine = new List<Objects.Node>();
-
-            foreach( var node in nodes )
+            Transaction t = null;
+            if (_uiDoc.Document.IsModifiable == false)
             {
-                var result = cl.Project(node.Location);
-                if ((result != null) && (result.Distance == 0)) onLine.Add(node);
+                t = new Transaction(_uiDoc.Document, "DrawNetwork");
+                t.Start();
             }
 
-            return onLine;
-        }
+            // draw all nodes and edges.
 
+            foreach( var node in nw.Nodes)
+            {
+                // draw a circle...
+                Utilities.GeometryCreationUtils.DrawCircle(_uiDoc.Document, _uiDoc.ActiveGraphicalView.SketchPlane.GetPlane(), _uiDoc.ActiveGraphicalView.SketchPlane, 1.0);
+            }
+
+            List<Line> lines = new List<Line>();
+            foreach( var edge in nw.Edges)
+            {
+                Objects.Node n1 = nw.Nodes.Single(n => n.Id == edge.Node1);
+                Objects.Node n2 = nw.Nodes.Single(n => n.Id == edge.Node2);
+
+
+                double dist = n1.Location.DistanceTo(n2.Location);
+                if (dist < _uiDoc.Application.Application.ShortCurveTolerance)
+                {
+                    string stop = "";
+                }
+                else
+                {
+                    Line line = Line.CreateBound(n1.Location, n2.Location);
+                    lines.Add(line);
+                }
+
+            }
+            Utilities.GeometryCreationUtils.DrawLines(_uiDoc.Document, lines);
+
+            if (t != null) t.Commit();
+        }
+      
         public IList<Objects.Space> GetAllSpaces()
         {
             // get representations of all spaces in the current view.
@@ -231,7 +275,7 @@ namespace AirflowDesigner.Controllers
 
             foreach( var elem in coll.ToElements())
             {
-                if (elem.Name.ToUpper() == "SHAFT") fis.Add(elem as FamilyInstance);
+                if (elem.Name.ToUpper() == "MECHANICAL SHAFT") fis.Add(elem as FamilyInstance);
             }
 
             return fis;
@@ -259,6 +303,21 @@ namespace AirflowDesigner.Controllers
         #endregion
 
         #region PrivateMethods
+
+        private IList<Objects.Node> getNodesOnLine(Line cl, IList<Objects.Node> nodes)
+        {
+            // find all of the nodes that are on the given line.
+            List<Objects.Node> onLine = new List<Objects.Node>();
+
+            foreach (var node in nodes)
+            {
+                var result = cl.Project(node.Location);
+                if ((result != null) && (result.Distance == 0)) onLine.Add(node);
+            }
+
+            return onLine;
+        }
+
 
         private Objects.Node lookupExisting( XYZ point, IList<Objects.Node> nodes)
         {

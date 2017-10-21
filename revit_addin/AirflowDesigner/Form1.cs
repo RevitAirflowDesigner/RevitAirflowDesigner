@@ -13,7 +13,7 @@ namespace AirflowDesigner
 {
     public partial class Form1 : System.Windows.Forms.Form
     {
-        private Controllers.Controller _c;
+        private Controllers.Controller _controller;
         private IList<FamilyInstance> _vavs;
         private IList<FamilyInstance> _shafts;
         private IList<Objects.Space> _spaces;
@@ -24,6 +24,7 @@ namespace AirflowDesigner
         {
             InitializeComponent();
 
+            _controller = c;
             _spaces = c.GetAllSpaces();
             _vavs = c.GetAllVAVs();
             _shafts = c.GetAllShaftLocations();
@@ -51,6 +52,21 @@ namespace AirflowDesigner
             if (_lines.Count ==0) isReady = false;
 
             btnGo.Enabled = isReady;
+        }
+
+        private void btnGo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var network = _controller.BuildNetwork(_spaces, _vavs, _shafts, _lines);
+
+                _controller.DrawNetwork(network);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.GetType().Name + ": " + ex.Message + Environment.NewLine + ex.StackTrace);
+            }
         }
     }
 }
