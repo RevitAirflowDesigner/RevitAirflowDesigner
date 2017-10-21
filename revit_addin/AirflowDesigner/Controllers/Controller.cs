@@ -231,7 +231,7 @@ namespace AirflowDesigner.Controllers
 
             foreach( var elem in coll.ToElements())
             {
-                if (elem.Name.ToUpper() == "SHAFT") fis.Add(elem as FamilyInstance);
+                if (elem.Name.ToUpper() == "MECHANICAL SHAFT") fis.Add(elem as FamilyInstance);
             }
 
             return fis;
