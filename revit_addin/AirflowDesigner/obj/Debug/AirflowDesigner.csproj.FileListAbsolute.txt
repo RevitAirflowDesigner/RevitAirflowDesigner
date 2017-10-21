@@ -69,3 +69,5 @@ C:\Users\mmason\Source\Repos\RevitAirflowDesigner\revit_addin\AirflowDesigner\bi
 C:\Users\mmason\Source\Repos\RevitAirflowDesigner\revit_addin\AirflowDesigner\obj\Debug\AirflowDesigner.csprojResolveAssemblyReference.cache
 C:\Users\mmason\Source\Repos\RevitAirflowDesigner\revit_addin\AirflowDesigner\obj\Debug\AirflowDesigner.dll
 C:\Users\mmason\Source\Repos\RevitAirflowDesigner\revit_addin\AirflowDesigner\obj\Debug\AirflowDesigner.pdb
+C:\Users\mmason\Source\Repos\RevitAirflowDesigner\revit_addin\AirflowDesigner\bin\Debug\Newtonsoft.Json.dll
+C:\Users\mmason\Source\Repos\RevitAirflowDesigner\revit_addin\AirflowDesigner\bin\Debug\Newtonsoft.Json.xml
