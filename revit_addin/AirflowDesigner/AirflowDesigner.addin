@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RevitAddIns>
+  <AddIn Type="Application">
+    <Name>Airflow Designer</Name>
+    <Assembly>.\AirflowDesinger\AirflowDesigner.dll</Assembly>
+    <AddInId>B833D876-48FA-4151-8164-96A42110544B</AddInId>
+    <FullClassName>AirflowDesigner.ExternalApp</FullClassName>
+    <VendorId>AEC Tech Symposium</VendorId>
+    <VendorDescription>Team no love for MEP, Ductwork optimization</VendorDescription>
+  </AddIn>
+</RevitAddIns>
