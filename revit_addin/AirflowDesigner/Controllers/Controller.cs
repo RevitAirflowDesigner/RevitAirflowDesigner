@@ -25,7 +25,35 @@ namespace AirflowDesigner.Controllers
 
         #region PublicMethods
 
-        public 
+        public Objects.Network BuildNetwork( IList<Objects.Space> spaces, IList<FamilyInstance> VAVs, IList<FamilyInstance> shafts, IList<Line> corridorLines )
+        {
+            // here we want to start with a node for every VAV, linked to the appropriate space.
+            // then project the VAV onto the corridor lines.
+            // then build the edges...
+
+            List<Objects.Node> nodes = new List<Objects.Node>();
+            List<Objects.Edge> edges = new List<Objects.Edge>();
+
+            // figure out the current phase.
+            Phase phase = _uiDoc.Document.GetElement(_uiDoc.ActiveGraphicalView.get_Parameter(BuiltInParameter.VIEW_PHASE).AsElementId()) as Phase;
+
+            foreach( var vav in VAVs)
+            {
+                XYZ location = (vav.Location as LocationPoint).Point;
+
+                Objects.Node n = new Objects.Node() { Location = location, Name = "VAV-" + vav.Id.IntegerValue, NodeType = Objects.Node.NodeTypeEnum.Vav };
+
+                // determine the related space.
+                var relatedSpace = vav.get_Space(phase);
+                if (relatedSpace != null) n.SpaceId = relatedSpace.UniqueId;
+
+            }
+
+            // project onto nearest corridor line, and make an edge.
+
+            return new Objects.Network();
+
+        }
 
         public IList<Objects.Space> GetAllSpaces()
         {
@@ -147,7 +175,19 @@ namespace AirflowDesigner.Controllers
         #endregion
 
         #region PrivateMethods
+        //private XYZ getClosest( XYZ point, IList<Line> lines)
+        //{
+        //    double nearest = 99999;
+        //    foreach( var line in lines )
+        //    {
+        //        IntersectionResult res = line.Project(point);
 
+        //        if (res != null)
+        //        {
+        //            nearest = res.
+        //        }
+        //    }
+        //}
         #endregion
 
 

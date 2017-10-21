@@ -65,7 +65,10 @@
     <Compile Include="Objects\Edge.cs" />
     <Compile Include="Objects\Node.cs" />
     <Compile Include="Objects\Space.cs" />
+    <Compile Include="Objects\VectorObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\AVFUtility.cs" />
+    <Compile Include="Utilities\GeometryCreationUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -19,6 +19,8 @@ namespace AirflowDesigner.Objects
 
         public XYZ Location { get; set; }
 
+        public String SpaceId { get; set; }
+
         public Node()
         {
             COUNTER++;
