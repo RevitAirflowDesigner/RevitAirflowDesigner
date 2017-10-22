@@ -66,6 +66,13 @@ namespace AirflowDesigner.Controllers
             return types.ToArray();
 
         }
+
+        public static void Connect(Connector c1, Connector c2)
+        {
+            c1.ConnectTo(c2);
+
+        }
+
         public static Duct MakeDuct(Document doc, XYZ p1, XYZ p2, ElementId typ, ElementId mst, object diameter, object insulationThick)
         {
             if (typ == null) throw new ArgumentNullException("A Duct Type must be specified");
@@ -179,33 +186,43 @@ namespace AirflowDesigner.Controllers
                     {
                         if (other.Id == duct.Id) continue; // not the same.
 
-                        foreach (Connector otherConn in other.ConnectorManager.UnusedConnectors)
+                        try
                         {
-                            double dist = otherConn.Origin.DistanceTo(conn.Origin);
-                            if (dist < 0.01)
+                            foreach (Connector otherConn in other.ConnectorManager.UnusedConnectors)
                             {
-                                // what's the angle between them.
-                                double angle = conn.CoordinateSystem.BasisZ.AngleTo(otherConn.CoordinateSystem.BasisZ);
-
-                                // see what kind.
-                                if ((angle < 0.001) || (angle > 0.99 * Math.PI))
+                                double dist = otherConn.Origin.DistanceTo(conn.Origin);
+                                if (dist < 0.01)
                                 {
-                                    // straight!
-                                    FamilyInstance fi = 
-                                        duct.Document.Create.NewTransitionFitting(conn, otherConn);
-                                    if (fi != null) fittings.Add(fi);
-                                }
-                                else
-                                {
-                                    // elbow
-                                    FamilyInstance fi =
-                                        duct.Document.Create.NewElbowFitting(conn, otherConn);
-                                    if (fi != null) fittings.Add(fi);
-                                }
+                                    // what's the angle between them.
+                                    double angle = conn.CoordinateSystem.BasisZ.AngleTo(otherConn.CoordinateSystem.BasisZ);
 
+
+                                    // see what kind.
+                                    if ((angle < 0.001) || (angle > 0.99 * Math.PI))
+                                    {
+                                        // straight!
+                                        FamilyInstance fi =
+                                            duct.Document.Create.NewTransitionFitting(conn, otherConn);
+                                        if (fi != null) fittings.Add(fi);
+                                    }
+                                    else
+                                    {
+                                        // elbow
+                                        FamilyInstance fi =
+                                            duct.Document.Create.NewElbowFitting(conn, otherConn);
+                                        if (fi != null) fittings.Add(fi);
+                                    }
+
+
+                                }
                             }
+
                         }
 
+                        catch (Exception ex)
+                        {
+                            duct.Document.Application.WriteJournalComment("Error attempting to insert fitting between ducts " + duct.Id + "/" + other.Id + " Error: " + ex.GetType().Name + ": " + ex.Message, false);
+                        }
                     }
                 }
             }

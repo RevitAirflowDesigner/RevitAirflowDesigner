@@ -602,11 +602,41 @@ namespace AirflowDesigner.Controllers
             if (fi2 != null) fittings.Add(fi2);
 
             // connect to the Vav
-           //FamilyInstance fi = findNearest(vavs, vavNode.Location)
+            try
+            {
+                FamilyInstance fiVav = findNearest(vavs, vavNode.Location);
+
+                Connector vavConn = MEPController.GetProperConnector(fiVav, FlowDirectionType.In, DuctSystemType.SupplyAir);
+                Connector vavEnd = MEPController.GetNearestConnector(d, vavNode.Location);
+
+                MEPController.Connect(vavConn, vavEnd);
+            }
+            catch { }
 
             return d;
 
 
+        }
+
+        private FamilyInstance findNearest(IList<FamilyInstance> fis, XYZ loc)
+        {
+            double nearest = 9999;
+            FamilyInstance nearFi = null;
+            foreach( var fi in fis )
+            {
+                XYZ pt = (fi.Location as LocationPoint).Point;
+
+                double dist = pt.DistanceTo(loc);
+
+                if (dist < nearest)
+                {
+                    nearest = dist;
+                    nearFi = fi;
+                }
+
+            }
+
+            return nearFi;
         }
 
         private FamilyInstance isFittingAtPoint(XYZ pt, IList<FamilyInstance> fis, double tolerance)
