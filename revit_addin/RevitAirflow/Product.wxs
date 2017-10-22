@@ -49,6 +49,7 @@
         <RemoveFolder Id="Airflow2018" On="uninstall"/>
         <File Id="Airflow.dll2018" Name="AirflowDesigner.dll" Source="$(var.ProjectDir)\..\AirflowDesigner\bin\Release\AirflowDesigner.dll" Checksum="no"/>
         <File Id="Airflow.py" Name="RevitAirflowDesigner.py" Source="$(var.ProjectDir)\..\AirflowDesigner\bin\Release\RevitAirflowDesigner.py" Checksum="no"/>
+        <File Id="VAV.dyn" Name="VAV Placement.dyn" Source="$(var.ProjectDir)\..\..\Dynamo\VAV Placement.dyn" Checksum="no"/>
       </Component>
 
     </DirectoryRef>
