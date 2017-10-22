@@ -139,6 +139,9 @@ namespace AirflowDesigner.UI
             // hoops to make it sortable
             UI.SortableBindingList<Objects.Solution> solutions = new UI.SortableBindingList<Objects.Solution>(_results.Solutions);
 
+            lblNumSol.Text = "Number of Solutions: " + _results.Solutions.Count;
+            lblNumSol.Visible = true;
+
             dataGridView1.DataSource = solutions;
             dataGridView1.Update();
             loadGraph(_results.Solutions);

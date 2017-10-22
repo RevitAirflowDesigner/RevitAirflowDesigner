@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*" Name="Revit Airflow Designer" Language="1033" Version="0.9.0.0" Manufacturer="Team Airflow: AEC Hackathon 2017" UpgradeCode="ae6ba890-7923-41db-b83f-1dfe40750643">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes"/>
+
+    <Feature Id="Revit2018Install" Title="Revit 2018" Level="1">
+      <ComponentRef Id="Addin2018" />
+      <ComponentRef Id="AirflowDLL2018" />
+    </Feature>
+
+  </Product>
+
+  <!-- Directory Structure for install -->
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="CommonAppDataFolder" Name="ProgramData">
+        <Directory Id="AUTODESKFOLDER"  Name="Autodesk">
+          <Directory Id="REVITFOLDER" Name="Revit" >
+            <Directory Id="ADDINSFOLDER" Name="Addins">
+
+              <Directory Id="ADDINS2018" Name="2018">
+                <Directory Id="BUNDLEFOLDER2018" Name="AirflowDesigner" >
+
+                </Directory>
+              </Directory>
+
+            </Directory>
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+  </Fragment>
+
+  <Fragment>
+
+    <DirectoryRef Id="ADDINS2018">
+      <Component Id="Addin2018" Guid="{B7933784-7666-4218-9217-3EDC01084B70}" DiskId="1">
+        <CreateFolder/>
+        <File Id="Airflow.addin2018" Name="AirflowDesigner.addin" Source="$(var.ProjectDir)\..\AirflowDesigner\AirflowDesigner.addin" Checksum="no"/>
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="BUNDLEFOLDER2018">
+      <Component Id="AirflowDLL2018" Guid="{2764C19B-85C7-4E54-8131-172D6864F712}" DiskId="1">
+        <CreateFolder/>
+        <RemoveFolder Id="Airflow2018" On="uninstall"/>
+        <File Id="Airflow.dll2018" Name="AirflowDesigner.dll" Source="$(var.ProjectDir)\..\AirflowDesigner\bin\Release\AirflowDesigner.dll" Checksum="no"/>
+        <File Id="Airflow.py" Name="RevitAirflowDesigner.py" Source="$(var.ProjectDir)\..\AirflowDesigner\bin\Release\RevitAirflowDesigner.py" Checksum="no"/>
+      </Component>
+
+    </DirectoryRef>
+
+  </Fragment>
+
+</Wix>

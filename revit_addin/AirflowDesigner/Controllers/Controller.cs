@@ -274,6 +274,7 @@ namespace AirflowDesigner.Controllers
 
                 pythonInfo.Arguments = "\"" + pyFile + "\" \"" + filename + "\"";
                 pythonInfo.CreateNoWindow = false;
+                pythonInfo.WindowStyle = ProcessWindowStyle.Minimized;
                 pythonInfo.UseShellExecute = true;
 
 

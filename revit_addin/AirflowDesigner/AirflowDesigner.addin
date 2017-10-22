@@ -2,7 +2,7 @@
 <RevitAddIns>
   <AddIn Type="Application">
     <Name>Airflow Designer</Name>
-    <Assembly>.\AirflowDesinger\AirflowDesigner.dll</Assembly>
+    <Assembly>.\AirflowDesigner\AirflowDesigner.dll</Assembly>
     <AddInId>B833D876-48FA-4151-8164-96A42110544B</AddInId>
     <FullClassName>AirflowDesigner.ExternalApp</FullClassName>
     <VendorId>AEC Tech Symposium</VendorId>

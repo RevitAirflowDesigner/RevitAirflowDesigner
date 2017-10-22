@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btn_Generate = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -48,6 +48,7 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
+            this.lblNumSol = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -162,8 +163,8 @@
             // colWeight
             // 
             this.colWeight.DataPropertyName = "Sheetmetal";
-            dataGridViewCellStyle10.Format = "0.00";
-            this.colWeight.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle1.Format = "0.00";
+            this.colWeight.DefaultCellStyle = dataGridViewCellStyle1;
             this.colWeight.HeaderText = "Sheetmetal (lbs)";
             this.colWeight.Name = "colWeight";
             this.colWeight.ReadOnly = true;
@@ -171,8 +172,8 @@
             // colCost
             // 
             this.colCost.DataPropertyName = "Cost";
-            dataGridViewCellStyle11.Format = "0.00";
-            this.colCost.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle2.Format = "0.00";
+            this.colCost.DefaultCellStyle = dataGridViewCellStyle2;
             this.colCost.HeaderText = "Cost ($)";
             this.colCost.Name = "colCost";
             this.colCost.ReadOnly = true;
@@ -180,8 +181,8 @@
             // colStatic
             // 
             this.colStatic.DataPropertyName = "StaticPressure";
-            dataGridViewCellStyle12.Format = "0.00";
-            this.colStatic.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle3.Format = "0.00";
+            this.colStatic.DefaultCellStyle = dataGridViewCellStyle3;
             this.colStatic.HeaderText = "Static Pressure (in wg)";
             this.colStatic.Name = "colStatic";
             this.colStatic.ReadOnly = true;
@@ -233,11 +234,23 @@
             this.cartesianChart1.TabIndex = 0;
             this.cartesianChart1.Text = "Solutions";
             // 
+            // lblNumSol
+            // 
+            this.lblNumSol.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblNumSol.AutoSize = true;
+            this.lblNumSol.Location = new System.Drawing.Point(480, 355);
+            this.lblNumSol.Name = "lblNumSol";
+            this.lblNumSol.Size = new System.Drawing.Size(75, 13);
+            this.lblNumSol.TabIndex = 8;
+            this.lblNumSol.Text = "# of Solutions:";
+            this.lblNumSol.Visible = false;
+            // 
             // Load
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(617, 402);
+            this.Controls.Add(this.lblNumSol);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btn_Load);
             this.Controls.Add(this.btn_Close);
@@ -250,6 +263,7 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -272,5 +286,6 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private LiveCharts.WinForms.CartesianChart cartesianChart1;
+        private System.Windows.Forms.Label lblNumSol;
     }
 }
