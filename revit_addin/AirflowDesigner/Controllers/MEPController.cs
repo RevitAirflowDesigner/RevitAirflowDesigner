@@ -116,6 +116,49 @@ namespace AirflowDesigner.Controllers
             return d;
         }
 
+        public static void JoinDucts(IList<Duct> ducts)
+        {
+            // we want to go through the ducts.
+            // find ducts that have coincident endpoints.
+
+            foreach (var duct in ducts)
+            {
+                foreach (Connector conn in duct.ConnectorManager.UnusedConnectors)
+                {
+                    foreach (var other in ducts)
+                    {
+                        if (other.Id == duct.Id) continue; // not the same.
+
+                        foreach (Connector otherConn in other.ConnectorManager.UnusedConnectors)
+                        {
+                            double dist = otherConn.Origin.DistanceTo(conn.Origin);
+                            if (dist < 0.01)
+                            {
+                                // what's the angle between them.
+                                double angle = conn.CoordinateSystem.BasisZ.AngleTo(otherConn.CoordinateSystem.BasisZ);
+
+                                // see what kind.
+                                if ((angle < 0.001) || (angle > 0.99 * Math.PI))
+                                {
+                                    // straight!
+                                    FamilyInstance fi = 
+                                        duct.Document.Create.NewTransitionFitting(conn, otherConn);
+                                }
+                                else
+                                {
+                                    // elbow
+                                    FamilyInstance fi =
+                                        duct.Document.Create.NewElbowFitting(conn, otherConn);
+                                }
+
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+
         #region PrivateMethods
         private static IList<Level> getAllLevelsBelow(Document doc, double elevation)
         {
