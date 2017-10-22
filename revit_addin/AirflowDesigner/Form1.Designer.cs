@@ -112,7 +112,7 @@
             // 
             // saveFileDialog1
             // 
-            this.saveFileDialog1.Filter = "*.json|JSON Files(*.json)|*.*|All Files";
+            this.saveFileDialog1.Filter = "JSON Files(*.json)|*.json|All Files (*.*)|*.*";
             // 
             // Form1
             // 

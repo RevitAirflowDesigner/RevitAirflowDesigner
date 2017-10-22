@@ -70,7 +70,9 @@ namespace AirflowDesigner
 
                     _controller.Serialize(network, saveFileDialog1.FileName);
 
-                    MessageBox.Show("The duct network has been saved.");
+                    MessageBox.Show("The duct network has been saved." +Environment.NewLine + 
+                                    "  # of Nodes: " + network.Nodes.Count + Environment.NewLine + 
+                                    "  # of Edges: " + network.Edges.Count);
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }

@@ -71,6 +71,8 @@
     <Compile Include="Objects\Network.cs" />
     <Compile Include="Objects\Edge.cs" />
     <Compile Include="Objects\Node.cs" />
+    <Compile Include="Objects\Results.cs" />
+    <Compile Include="Objects\Solution.cs" />
     <Compile Include="Objects\Space.cs" />
     <Compile Include="Objects\VectorObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -16,6 +16,7 @@ namespace AirflowDesigner.Controllers
     {
         #region Declarations
         private UIDocument _uiDoc;
+        private double _ductWorkElevation = 0;
         #endregion
 
         #region Constructor
@@ -27,7 +28,7 @@ namespace AirflowDesigner.Controllers
 
         #region PublicMethods
 
-        public Objects.Network BuildNetwork( IList<Objects.Space> spaces, IList<FamilyInstance> VAVs, IList<FamilyInstance> shafts, IList<Line> corridorLines )
+        public Objects.Network BuildNetwork( IList<Objects.Space> spaces, IList<FamilyInstance> VAVs, IList<FamilyInstance> shafts, IList<Line> corridorLines, bool biDirectional = false )
         {
             // here we want to start with a node for every VAV, linked to the appropriate space.
             // then project the VAV onto the corridor lines.
@@ -40,13 +41,18 @@ namespace AirflowDesigner.Controllers
             network.Nodes = nodes;
             network.Spaces = spaces.ToList();
 
+           
+
+            _ductWorkElevation = (VAVs.First().Location as LocationPoint).Point.Z;
+            corridorLines = resetLines(corridorLines);
+
 
             // figure out the current phase.
             Phase phase = _uiDoc.Document.GetElement(_uiDoc.ActiveGraphicalView.get_Parameter(BuiltInParameter.VIEW_PHASE).AsElementId()) as Phase;
 
             foreach( var vav in VAVs)
             {
-                XYZ location = (vav.Location as LocationPoint).Point;
+                XYZ location = normalizeZ((vav.Location as LocationPoint).Point);
 
                 Objects.Node n = new Objects.Node() { Location = location, Name = "VAV-" + vav.Id.IntegerValue, NodeType = Objects.Node.NodeTypeEnum.Vav };
                
@@ -82,6 +88,7 @@ namespace AirflowDesigner.Controllers
             foreach( var shaft in shafts)
             {
                 XYZ location = (shaft.Location as LocationPoint).Point;
+                location = normalizeZ(location);
 
                 // shaft name is based on the mark
                 Parameter mark = shaft.get_Parameter(BuiltInParameter.ALL_MODEL_MARK);
@@ -144,6 +151,13 @@ namespace AirflowDesigner.Controllers
                     Objects.Edge corrEdge = new Objects.Edge() { Node1 = onLine[i - 1].Id, Node2 = onLine[i].Id, Distance = onLine[i - 1].Location.DistanceTo(onLine[i].Location) };
                     log("Made corridor edge from " + onLine[i - 1].Name + " to " + onLine[i].Name);
                     edges.Add(corrEdge);
+
+                    if (biDirectional)
+                    {
+                        Objects.Edge c2 = new Objects.Edge() { Node2 = onLine[i - 1].Id, Node1 = onLine[i].Id, Distance = onLine[i - 1].Location.DistanceTo(onLine[i].Location) };
+                        log("Made corridor edge from " + onLine[i].Name + " to " + onLine[i-1].Name);
+                        edges.Add(c2);
+                    }
                 }
 
             }
@@ -152,6 +166,21 @@ namespace AirflowDesigner.Controllers
 
             return network;
 
+        }
+
+        private IList<Line> resetLines(IList<Line> inLines)
+        {
+            List<Line> lines = new List<Line>();
+
+            foreach( var line in inLines)
+            {
+                XYZ p1 = line.GetEndPoint(0);
+                XYZ p2 = line.GetEndPoint(1);
+                var newLn = Line.CreateBound(new XYZ(p1.X, p1.Y, _ductWorkElevation), new XYZ(p2.X, p2.Y, _ductWorkElevation));
+                lines.Add(newLn);
+            }
+
+            return lines;
         }
 
         public void Serialize(Objects.Network nw, string filename)
@@ -192,7 +221,7 @@ namespace AirflowDesigner.Controllers
             foreach( var node in nw.Nodes)
             {
                 // draw a circle...
-                Utilities.GeometryCreationUtils.DrawCircle(_uiDoc.Document, _uiDoc.ActiveGraphicalView.SketchPlane.GetPlane(), _uiDoc.ActiveGraphicalView.SketchPlane, 1.0);
+                // Utilities.GeometryCreationUtils.DrawCircle(_uiDoc.Document, Plane.CreateByNormalAndOrigin( XYZ.BasisZ, node.Location), _uiDoc.ActiveGraphicalView.SketchPlane, 1.0);
             }
 
             List<Line> lines = new List<Line>();
@@ -347,6 +376,7 @@ namespace AirflowDesigner.Controllers
 
             foreach (var node in nodes)
             {
+                
                 var result = cl.Project(node.Location);
                 if ((result != null) && (result.Distance < 0.001)) onLine.Add(node);
             }
@@ -391,7 +421,7 @@ namespace AirflowDesigner.Controllers
                 }
             }
 
-            if (foundOne) return outputXYZ;
+            if (foundOne) return normalizeZ( outputXYZ);
 
             // if we didn't find one, consider endpoints if we are allowed.
             if (includeEnds == false) return null;
@@ -413,7 +443,12 @@ namespace AirflowDesigner.Controllers
                 }
             }
 
-            return outputXYZ;
+            return normalizeZ(outputXYZ);
+        }
+
+        private XYZ normalizeZ(XYZ point)
+        {
+            return new XYZ(point.X, point.Y, _ductWorkElevation);
         }
         #endregion
 
