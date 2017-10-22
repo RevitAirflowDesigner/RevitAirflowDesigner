@@ -7,7 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Mechanical;
-
+using AirflowDesigner.UI;
+using System.IO;
 
 namespace AirflowDesigner.Controllers
 {
@@ -159,6 +160,10 @@ namespace AirflowDesigner.Controllers
 
             System.IO.File.WriteAllText(filename, json);
 
+        }
+
+        private void DeSerialize(string filename)
+        {
         }
 
         public string getDefaultPrefix()

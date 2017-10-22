@@ -18,7 +18,8 @@ namespace AirflowDesigner
             try
             {
 
-                Load f = new Load();
+
+                UI.Load f = new UI.Load();
 
                 f.ShowDialog();
 
