@@ -43,6 +43,11 @@ namespace AirflowDesigner
 
             panel.AddItem(save);
             panel.AddItem(load);
+            panel.AddSlideOut();
+
+            var clear = new PushButtonData("ClearAirflow", "Clear", System.Reflection.Assembly.GetExecutingAssembly().Location, "AirflowDesigner.ClearCommand");
+            clear.ToolTip = "Clear any AVF geometry previews";
+            panel.AddItem(clear);
         }
 
         private System.Windows.Media.ImageSource getImage(string imageFile)

@@ -160,3 +160,4 @@ C:\Users\mmason\Source\Repos\RevitAirflowDesigner\revit_addin\AirflowDesigner\bi
 C:\Users\mmason\Source\Repos\RevitAirflowDesigner\revit_addin\AirflowDesigner\bin\Debug\LiveCharts.WinForms.xml
 C:\Users\mmason\Source\Repos\RevitAirflowDesigner\revit_addin\AirflowDesigner\bin\Debug\LiveCharts.Wpf.pdb
 C:\Users\mmason\Source\Repos\RevitAirflowDesigner\revit_addin\AirflowDesigner\bin\Debug\LiveCharts.Wpf.xml
+C:\Users\mmason\Source\Repos\RevitAirflowDesigner\revit_addin\AirflowDesigner\bin\Debug\RevitAirflowDesigner.py

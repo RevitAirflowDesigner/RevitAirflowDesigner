@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btn_Generate = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -47,9 +47,11 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -160,8 +162,8 @@
             // colWeight
             // 
             this.colWeight.DataPropertyName = "Sheetmetal";
-            dataGridViewCellStyle4.Format = "0.00";
-            this.colWeight.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.Format = "0.00";
+            this.colWeight.DefaultCellStyle = dataGridViewCellStyle10;
             this.colWeight.HeaderText = "Sheetmetal (lbs)";
             this.colWeight.Name = "colWeight";
             this.colWeight.ReadOnly = true;
@@ -169,8 +171,8 @@
             // colCost
             // 
             this.colCost.DataPropertyName = "Cost";
-            dataGridViewCellStyle5.Format = "0.00";
-            this.colCost.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.Format = "0.00";
+            this.colCost.DefaultCellStyle = dataGridViewCellStyle11;
             this.colCost.HeaderText = "Cost ($)";
             this.colCost.Name = "colCost";
             this.colCost.ReadOnly = true;
@@ -178,8 +180,8 @@
             // colStatic
             // 
             this.colStatic.DataPropertyName = "StaticPressure";
-            dataGridViewCellStyle6.Format = "0.00";
-            this.colStatic.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Format = "0.00";
+            this.colStatic.DefaultCellStyle = dataGridViewCellStyle12;
             this.colStatic.HeaderText = "Static Pressure (in wg)";
             this.colStatic.Name = "colStatic";
             this.colStatic.ReadOnly = true;
@@ -213,6 +215,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.cartesianChart1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -220,6 +223,15 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Graph";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // cartesianChart1
+            // 
+            this.cartesianChart1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cartesianChart1.Location = new System.Drawing.Point(3, 3);
+            this.cartesianChart1.Name = "cartesianChart1";
+            this.cartesianChart1.Size = new System.Drawing.Size(586, 287);
+            this.cartesianChart1.TabIndex = 0;
+            this.cartesianChart1.Text = "Solutions";
             // 
             // Load
             // 
@@ -231,11 +243,12 @@
             this.Controls.Add(this.btn_Close);
             this.Controls.Add(this.btn_Generate);
             this.Name = "Load";
-            this.Text = "Load";
+            this.Text = "Review Results";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -258,5 +271,6 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
+        private LiveCharts.WinForms.CartesianChart cartesianChart1;
     }
 }

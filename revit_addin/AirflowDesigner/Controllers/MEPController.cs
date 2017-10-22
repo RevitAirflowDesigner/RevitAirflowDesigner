@@ -145,6 +145,26 @@ namespace AirflowDesigner.Controllers
             return nearC;
         }
 
+        public static Connector GetNearestConnector(FamilyInstance fi, XYZ point)
+        {
+
+            double nearest = 999999;
+            Connector nearC = null;
+            foreach (Connector c in fi.MEPModel.ConnectorManager.Connectors)
+            {
+                double dist = c.Origin.DistanceTo(point);
+                if (dist < nearest)
+                {
+                    nearest = dist;
+                    nearC = c;
+                }
+            }
+
+            return nearC;
+        }
+
+      
+
         public static IList<FamilyInstance> JoinDucts(IList<Duct> ducts)
         {
             // we want to go through the ducts.
