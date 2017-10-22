@@ -122,6 +122,38 @@ namespace AirflowDesigner.Controllers
                 edges.Add(edge);
             }
 
+            // see if we have any corridor line intersects/overlaps
+            for (int i=0; i<corridorLines.Count;i++)
+            {
+                for (int j=i+1; j<corridorLines.Count;j++)
+                {
+                    log("Checking Corrdor Lines " + i + " vs. " + j);
+
+                    IntersectionResultArray outInts = null;
+                    var result = corridorLines[i].Intersect(corridorLines[j], out outInts);
+                    log("  => result: " + result);
+                    switch (result)
+                    {
+
+                        case SetComparisonResult.Overlap:
+                            foreach( IntersectionResult res in outInts)
+                            {
+                                XYZ tmp = normalizeZ(res.XYZPoint);
+
+                                Objects.Node n1 = lookupExisting(tmp, nodes);
+                                if (n1 == null)
+                                {
+                                    new Objects.Node() { Location = res.XYZPoint, NodeType = Objects.Node.NodeTypeEnum.Other, Name = "CorridorOverlap" };
+                                    nodes.Add(n1);
+                                }
+                            }
+                            break;
+                    }
+
+
+                }
+            }
+
             // then we need to connect the corridor nodes 
             foreach( var cl in corridorLines )
             {
