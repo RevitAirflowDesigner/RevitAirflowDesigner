@@ -191,10 +191,16 @@ namespace AirflowDesigner.Controllers
 
         }
 
-        private void DeSerialize(string filename)
+        public Objects.Results DeSerialize(string filename)
         {
+            string json = System.IO.File.ReadAllText(filename);
+
+            Objects.Results res = Newtonsoft.Json.JsonConvert.DeserializeObject<Objects.Results>(json);
+
+            return res;
         }
 
+    
         public string getDefaultPrefix()
         {
             // we want it to be based on the location of the file.
@@ -205,6 +211,38 @@ namespace AirflowDesigner.Controllers
             }
 
             return _uiDoc.Document.PathName.Replace(".rvt", "");
+        }
+
+        public void DrawSolution(Objects.Solution sol, IList<Objects.Node> nodes)
+        {
+            Utilities.AVFUtility.Clear(_uiDoc);
+
+            foreach( var edge in sol.Edges)
+            {
+                Objects.Node n1 = nodes.Single(n => n.Id == edge.Node1);
+                Objects.Node n2 = nodes.Single(n => n.Id == edge.Node2);
+
+
+            }
+        }
+        public void ShowSolution(Objects.Solution sol, IList<Objects.Node> nodes)
+        {
+            Utilities.AVFUtility.Clear(_uiDoc);
+
+            List<Solid> solids = new List<Solid>();
+            List<Double> values = new List<double>();
+            foreach( var edge in sol.Edges )
+            {
+                Objects.Node n1 = nodes.Single(n => n.Id == edge.Node1);
+                Objects.Node n2 = nodes.Single(n => n.Id == edge.Node2);
+
+                var cyl = Utilities.GeometryCreationUtils.CreateCylinder(_uiDoc.Application.Application, n1.Location, n2.Location.Subtract(n1.Location).Normalize(), edge.Diameter / 2.0, n1.Location.DistanceTo(n2.Location));
+                solids.Add(cyl);
+                values.Add(edge.Diameter);
+
+            }
+
+            Utilities.AVFUtility.ShowSolids(_uiDoc.Document, solids, values);
         }
 
         public void DrawNetwork(Objects.Network nw)

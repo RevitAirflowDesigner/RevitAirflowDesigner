@@ -16,6 +16,7 @@ namespace AirflowDesigner.UI
         private Autodesk.Revit.UI.UIApplication _uiApp;
         private enum ActionEnum { None, Show, DrawRoute };
         private ActionEnum _action = ActionEnum.None;
+        private Objects.Results _results;
 
         public Load(Controllers.Controller c, Autodesk.Revit.UI.UIApplication uiApp)
         {
@@ -28,6 +29,8 @@ namespace AirflowDesigner.UI
             _uiApp.Idling += _uiApp_Idling;
             _action = ActionEnum.None;
 
+            btn_Generate.Enabled = false;
+
         }
        
         private void _uiApp_Idling(object sender, Autodesk.Revit.UI.Events.IdlingEventArgs e)
@@ -37,8 +40,11 @@ namespace AirflowDesigner.UI
 
             switch (tmp)
             {
-               
-                   
+
+                case ActionEnum.Show:
+                    performShow();
+                    break;
+
 
                
             }
@@ -64,11 +70,10 @@ namespace AirflowDesigner.UI
                 if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
                 {
 
-                    //_controller.DeSerialize(fileName);
+                    _results = _controller.DeSerialize(openFileDialog1.FileName);
 
-                    MessageBox.Show("The ductwork layout results has been loaded.");
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
+                    dataGridView1.DataSource = _results.Solutions;
+                    dataGridView1.Update();
                 }
 
             }
@@ -77,6 +82,58 @@ namespace AirflowDesigner.UI
                 MessageBox.Show("Error: " + ex.GetType().Name + ": " + ex.Message + Environment.NewLine + ex.StackTrace);
             }
 
+        }
+
+        private void performShow()
+        {
+            try
+            {
+                if (dataGridView1.SelectedRows.Count > 0)
+                {
+                    Objects.Solution sol = dataGridView1.SelectedRows[0].DataBoundItem as Objects.Solution;
+                    if (sol != null)
+                    {
+                        _controller.ShowSolution(sol, _results.Nodes);
+                    }
+                    btn_Generate.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.GetType().Name + ": " + ex.Message);
+            }
+        }
+
+        private void performGenerate()
+        {
+            try
+            {
+                if (dataGridView1.SelectedRows.Count > 0)
+                {
+                    Objects.Solution sol = dataGridView1.SelectedRows[0].DataBoundItem as Objects.Solution;
+                    if (sol != null)
+                    {
+                        _controller.ShowSolution(sol, _results.Nodes);
+
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
+                    }
+                    
+                }
+                else
+                {
+                    MessageBox.Show("Please select a row to generate.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.GetType().Name + ": " + ex.Message);
+            }
+        }
+
+        private void onRowSelected(object sender, EventArgs e)
+        {
+            _action = ActionEnum.Show;
         }
     }
 }
