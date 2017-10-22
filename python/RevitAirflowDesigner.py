@@ -306,7 +306,7 @@ if __name__== "__main__":
     sheet_metal_unit_cost = 6.0 # USD/lb
 
     data["Nodes"] = inputs["Nodes"]
-    #n = 1
+    cntr = 0
 
     # Loop for shafts
     for route_option in route_option_list:
@@ -344,7 +344,8 @@ if __name__== "__main__":
 
                 edges.append({"Node1":n1, "Node2": n2, "Distance": length, "Diameter": diameter, "Airflow": airflow})
 
-            solutions.append({"Id":i, "Shaft": shaft, "SheetMetal": total_weight, "Cost": total_cost, "StaticPressure": pressure_drop, "Edges":edges})
+            solutions.append({"Id":cntr, "Shaft": shaft, "SheetMetal": total_weight, "Cost": total_cost, "StaticPressure": pressure_drop, "Edges":edges})
+            cntr += 1
 
             data["Solutions"] = solutions
 
