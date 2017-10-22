@@ -21,21 +21,21 @@ namespace AirflowDesigner
                 // temp.
                 Objects.Results res = new Objects.Results();
                 res.Nodes.Add(new Objects.Node() { Name = "Node1V", Location = new XYZ(0, 0, 0), NodeType = Objects.Node.NodeTypeEnum.Vav, SpaceId = "1234" });
-                res.Nodes.Add(new Objects.Node() { Name = "Node2C", Location = new XYZ(0, 0, 0), NodeType = Objects.Node.NodeTypeEnum.Other, SpaceId = null });
-                res.Nodes.Add(new Objects.Node() { Name = "Node3C", Location = new XYZ(0, 0, 0), NodeType = Objects.Node.NodeTypeEnum.Other, SpaceId = null });
-                res.Nodes.Add(new Objects.Node() { Name = "Node4S", Location = new XYZ(0, 0, 0), NodeType = Objects.Node.NodeTypeEnum.Shaft, SpaceId = "1234" });
+                res.Nodes.Add(new Objects.Node() { Name = "Node2C", Location = new XYZ(10, 10, 0), NodeType = Objects.Node.NodeTypeEnum.Other, SpaceId = null });
+                res.Nodes.Add(new Objects.Node() { Name = "Node3C", Location = new XYZ(5, 5, 0), NodeType = Objects.Node.NodeTypeEnum.Other, SpaceId = null });
+                res.Nodes.Add(new Objects.Node() { Name = "Node4S", Location = new XYZ(12, 17, 0), NodeType = Objects.Node.NodeTypeEnum.Shaft, SpaceId = "1234" });
 
                 Objects.Solution sol = new Objects.Solution() { Shaft = "Shaft1", Cost = 10, SheetMetal = 5, StaticPressure = 5 };
-                sol.Edges.Add(new Objects.Edge() { Node1 = 1, Node2 = 2, Airflow = 5, Diameter = 5, Distance = 10 });
-                sol.Edges.Add(new Objects.Edge() { Node1 = 2, Node2 = 3, Airflow = 7, Diameter = 6, Distance = 2 });
-                sol.Edges.Add(new Objects.Edge() { Node1 = 3, Node2 = 4, Airflow = 9, Distance = 5, Diameter = 2 });
+                sol.Edges.Add(new Objects.Edge() { Node1 = res.Nodes[0].Id, Node2 = res.Nodes[1].Id, Airflow = 5, Diameter = 2, Distance = 10 });
+                sol.Edges.Add(new Objects.Edge() { Node1 = res.Nodes[1].Id, Node2 = res.Nodes[2].Id, Airflow = 7, Diameter = 3, Distance = 2 });
+                sol.Edges.Add(new Objects.Edge() { Node1 = res.Nodes[2].Id, Node2 = res.Nodes[3].Id, Airflow = 9, Distance = 3, Diameter = 2 });
 
                 res.Solutions.Add(sol);
 
                 sol = new Objects.Solution() { Shaft = "Shaft1", Cost = 10, SheetMetal = 5, StaticPressure = 5 };
-                sol.Edges.Add(new Objects.Edge() { Node1 = 3, Node2 = 1, Airflow = 4, Diameter = 10, Distance = 11 });
-                sol.Edges.Add(new Objects.Edge() { Node1 = 1, Node2 = 2, Airflow = 8, Diameter = 7, Distance = 8 });
-                sol.Edges.Add(new Objects.Edge() { Node1 = 2, Node2 = 4, Airflow = 12, Distance = 15, Diameter = 9 });
+                sol.Edges.Add(new Objects.Edge() { Node1 = res.Nodes[2].Id, Node2 = res.Nodes[0].Id, Airflow = 4, Diameter = 1, Distance = 11 });
+                sol.Edges.Add(new Objects.Edge() { Node1 = res.Nodes[1].Id, Node2 = res.Nodes[2].Id, Airflow = 8, Diameter = 2.5, Distance = 8 });
+                sol.Edges.Add(new Objects.Edge() { Node1 = res.Nodes[0].Id, Node2 = res.Nodes[3].Id, Airflow = 12, Distance = 15, Diameter = 2 });
                 res.Solutions.Add(sol);
 
                 string results = Newtonsoft.Json.JsonConvert.SerializeObject(res);
@@ -47,8 +47,21 @@ namespace AirflowDesigner
                 Controllers.Controller c = new Controllers.Controller(commandData.Application.ActiveUIDocument);
 
                 UI.Load f = new UI.Load(c, commandData.Application);
+                IntPtr currentRevitWin = Utilities.WindowsUtils.GetMainWindowHandle();
+                if (currentRevitWin != null)
+                {
+                    UI.WindowHandle handle = new UI.WindowHandle(currentRevitWin);
 
-                f.Show();
+                    f.Show(handle);
+                }
+                else
+                {
+                    f.Show();
+                }
+
+               
+
+                
 
                 return Result.Succeeded;
             }

@@ -30,6 +30,9 @@ namespace AirflowDesigner.UI
             _action = ActionEnum.None;
 
             btn_Generate.Enabled = false;
+            cbColorBy.Items.Add("Diameter");
+            cbColorBy.Items.Add("Airflow");
+            cbColorBy.SelectedIndex = 0;
 
         }
        
@@ -45,6 +48,9 @@ namespace AirflowDesigner.UI
                     performShow();
                     break;
 
+                case ActionEnum.DrawRoute:
+                    performCreate();
+                    break;
 
                
             }
@@ -52,6 +58,25 @@ namespace AirflowDesigner.UI
         }
 
        
+        private void performCreate()
+        {
+            try
+            {
+                if (dataGridView1.SelectedRows.Count > 0)
+                {
+                    Objects.Solution sol = dataGridView1.SelectedRows[0].DataBoundItem as Objects.Solution;
+                    if (sol != null)
+                    {
+
+                        UI.CreateForm create = new CreateForm(_controller, sol, _results.Nodes);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.GetType().Name + ": " + ex.Message);
+            }
+        }
 
         private void btn_Close_Click(object sender, EventArgs e)
         {
@@ -93,7 +118,7 @@ namespace AirflowDesigner.UI
                     Objects.Solution sol = dataGridView1.SelectedRows[0].DataBoundItem as Objects.Solution;
                     if (sol != null)
                     {
-                        _controller.ShowSolution(sol, _results.Nodes);
+                        _controller.ShowSolution(sol, _results.Nodes, cbColorBy.SelectedItem.ToString());
                     }
                     btn_Generate.Enabled = true;
                 }
@@ -113,7 +138,9 @@ namespace AirflowDesigner.UI
                     Objects.Solution sol = dataGridView1.SelectedRows[0].DataBoundItem as Objects.Solution;
                     if (sol != null)
                     {
-                        _controller.ShowSolution(sol, _results.Nodes);
+                        string colorBy = cbColorBy.SelectedItem.ToString();
+
+                        _controller.ShowSolution(sol, _results.Nodes, colorBy);
 
                         this.DialogResult = DialogResult.OK;
                         this.Close();

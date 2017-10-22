@@ -195,7 +195,8 @@ namespace AirflowDesigner.Controllers
         {
             string json = System.IO.File.ReadAllText(filename);
 
-            Objects.Results res = Newtonsoft.Json.JsonConvert.DeserializeObject<Objects.Results>(json);
+            Objects.Results res = Newtonsoft.Json.JsonConvert.DeserializeObject<Objects.Results>(json,
+                                    new Newtonsoft.Json.JsonConverter[] { new Objects.XYZDeserializer()});
 
             return res;
         }
@@ -213,8 +214,15 @@ namespace AirflowDesigner.Controllers
             return _uiDoc.Document.PathName.Replace(".rvt", "");
         }
 
-        public void DrawSolution(Objects.Solution sol, IList<Objects.Node> nodes)
+        public void DrawSolution(Objects.Solution sol, IList<Objects.Node> nodes, ElementId system, ElementId ductType)
         {
+            Transaction t = null;
+            if(_uiDoc.Document.IsModifiable)
+            {
+                t = new Transaction(_uiDoc.Document, "Create Ductwork");
+                t.Start();
+            }
+
             Utilities.AVFUtility.Clear(_uiDoc);
 
             foreach( var edge in sol.Edges)
@@ -222,10 +230,16 @@ namespace AirflowDesigner.Controllers
                 Objects.Node n1 = nodes.Single(n => n.Id == edge.Node1);
                 Objects.Node n2 = nodes.Single(n => n.Id == edge.Node2);
 
+                MEPController.MakeDuct(_uiDoc.Document, n1.Location, n2.Location, ductType, system, edge.Diameter, 0.0);
+
 
             }
+
+            if (t != null) t.Commit();
         }
-        public void ShowSolution(Objects.Solution sol, IList<Objects.Node> nodes)
+        public Autodesk.Revit.DB.Document GetDocument() { return _uiDoc.Document; }
+
+        public void ShowSolution(Objects.Solution sol, IList<Objects.Node> nodes, string colorBy)
         {
             Utilities.AVFUtility.Clear(_uiDoc);
 
@@ -238,7 +252,18 @@ namespace AirflowDesigner.Controllers
 
                 var cyl = Utilities.GeometryCreationUtils.CreateCylinder(_uiDoc.Application.Application, n1.Location, n2.Location.Subtract(n1.Location).Normalize(), edge.Diameter / 2.0, n1.Location.DistanceTo(n2.Location));
                 solids.Add(cyl);
-                values.Add(edge.Diameter);
+
+                double val = 0;
+                switch (colorBy)
+                {
+                    case "Diameter":
+                        val = edge.Diameter;
+                        break;
+                    case "Airflow":
+                        val = edge.Airflow;
+                        break;
+                }
+                values.Add(val);
 
             }
 
