@@ -2,7 +2,7 @@
 # coding: utf-8
 
 # In[55]:
-
+import sys
 import os
 import copy
 import json
@@ -255,12 +255,13 @@ class RouteOptions:
 if __name__== "__main__":
 
     #filename = 'Arch Model 3.json'
-    filename = 'Arch Model4.json'
-
+    #filename = 'Arch Model4.json'
+    filename = sys.argv[1]
+    print(filename.split(".")[0]+"_solution.json")
 
     # In[60]:
 
-    with open(os.path.join('..', 'models', filename)) as json_data:
+    with open(os.path.abspath(filename)) as json_data:
         inputs = json.load(json_data)
 
 
@@ -355,5 +356,5 @@ if __name__== "__main__":
 
             data["Solutions"] = solutions
 
-    with open(os.path.join('..', 'models', 'solutions_' + filename), 'w') as outfile:
+    with open(os.path.abspath(filename.split(".")[0]+"_solution.json"), 'w') as outfile:
         json.dump(data, outfile)
