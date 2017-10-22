@@ -34,6 +34,7 @@
       <HintPath>packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="RevitAPI">
       <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2018\RevitAPI.dll</HintPath>
     </Reference>
@@ -50,6 +51,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\MEPController.cs" />
@@ -100,6 +102,20 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Load.resx">
       <DependentUpon>Load.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\Icons\document_16.png">
+      <Link>Icons\document_16.png</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Icons\document_32.png">
+      <Link>Icons\document_32.png</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Icons\path_finder_16.png">
+      <Link>Icons\path_finder_16.png</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Icons\path_finder_32.png">
+      <Link>Icons\path_finder_32.png</Link>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

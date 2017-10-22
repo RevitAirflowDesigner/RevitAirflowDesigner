@@ -41,7 +41,7 @@ namespace AirflowDesigner.UI
 
                 _controller.DrawSolution(_sol, _nodes, sys.Id, typ.Id);
 
-               
+                
             }
             catch (Exception ex)
             {

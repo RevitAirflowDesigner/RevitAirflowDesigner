@@ -210,7 +210,7 @@
           "Node1": 6,
           "Node2": 10,
           "Distance": 20,
-          "Diameter": 1.5,
+          "Diameter": 2,
           "Airflow": 1000
         },
         {
