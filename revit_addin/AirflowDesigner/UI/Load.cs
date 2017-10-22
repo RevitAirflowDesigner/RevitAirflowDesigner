@@ -127,10 +127,10 @@ namespace AirflowDesigner.UI
         {
             _results = _controller.DeSerialize(filename);
 
-            BindingSource bs = new BindingSource();
-            bs.DataSource = _results.Solutions;
+            // hoops to make it sortable
+            UI.SortableBindingList<Objects.Solution> solutions = new UI.SortableBindingList<Objects.Solution>(_results.Solutions);
 
-            dataGridView1.DataSource = bs;
+            dataGridView1.DataSource = solutions;
             dataGridView1.Update();
         }
 
@@ -210,6 +210,7 @@ namespace AirflowDesigner.UI
 
 
             dataGridView1.Sort(dataGridView1.Columns[e.ColumnIndex], dir);
+            _lastSortCol = e.ColumnIndex;
 
         }
     }

@@ -171,6 +171,19 @@ namespace AirflowDesigner.Controllers
             }
         }
 
+        public static void MoveFittingAway(FamilyInstance fi, double distance)
+        {
+            // move the fitting from the larger side towards the smaller side by a 
+            // certain distance, so that we can more easily T into it.
+
+            //Transaction t = null;
+            //if (fi.Document.IsModifiable == false)
+            //{
+            //    t = new Transaction()
+            //}
+
+        }
+
         #region PrivateMethods
         private static IList<Level> getAllLevelsBelow(Document doc, double elevation)
         {

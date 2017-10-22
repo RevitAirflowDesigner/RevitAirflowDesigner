@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btn_Generate = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -36,18 +39,32 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.label2 = new System.Windows.Forms.Label();
             this.cbColorBy = new System.Windows.Forms.ComboBox();
+            this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colShaft = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colWeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStatic = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colId,
+            this.colShaft,
+            this.colWeight,
+            this.colCost,
+            this.colStatic});
             this.dataGridView1.Location = new System.Drawing.Point(12, 67);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(497, 261);
             this.dataGridView1.TabIndex = 0;
@@ -121,6 +138,47 @@
             this.cbColorBy.Size = new System.Drawing.Size(121, 21);
             this.cbColorBy.TabIndex = 6;
             // 
+            // colId
+            // 
+            this.colId.DataPropertyName = "Id";
+            this.colId.HeaderText = "Id";
+            this.colId.Name = "colId";
+            this.colId.ReadOnly = true;
+            // 
+            // colShaft
+            // 
+            this.colShaft.DataPropertyName = "Shaft";
+            this.colShaft.HeaderText = "Shaft";
+            this.colShaft.Name = "colShaft";
+            this.colShaft.ReadOnly = true;
+            // 
+            // colWeight
+            // 
+            this.colWeight.DataPropertyName = "Sheetmetal";
+            dataGridViewCellStyle1.Format = "0.00";
+            this.colWeight.DefaultCellStyle = dataGridViewCellStyle1;
+            this.colWeight.HeaderText = "Sheetmetal (lbs)";
+            this.colWeight.Name = "colWeight";
+            this.colWeight.ReadOnly = true;
+            // 
+            // colCost
+            // 
+            this.colCost.DataPropertyName = "Cost";
+            dataGridViewCellStyle2.Format = "0.00";
+            this.colCost.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colCost.HeaderText = "Cost ($)";
+            this.colCost.Name = "colCost";
+            this.colCost.ReadOnly = true;
+            // 
+            // colStatic
+            // 
+            this.colStatic.DataPropertyName = "StaticPressure";
+            dataGridViewCellStyle3.Format = "0.00";
+            this.colStatic.DefaultCellStyle = dataGridViewCellStyle3;
+            this.colStatic.HeaderText = "Static Pressure (in wg)";
+            this.colStatic.Name = "colStatic";
+            this.colStatic.ReadOnly = true;
+            // 
             // Load
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -151,5 +209,10 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cbColorBy;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colShaft;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colWeight;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCost;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colStatic;
     }
 }
