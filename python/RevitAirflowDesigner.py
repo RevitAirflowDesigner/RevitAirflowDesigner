@@ -137,12 +137,7 @@ class RouteOptions:
 
         self.graphs = final_graphs
 
-        print('number of graphs: ' + str(len(self.graphs)))
-
     def set_edge_attribute(self, graph_number, n1, n2, attribute, value):
-        print(self.graphs)
-        print(graph_number)
-
         all_edges = self.graphs[graph_number].edges()
         if (n1, n2) in all_edges or (n2, n1) in all_edges:
             self.graphs[graph_number].edge[n1][n2][attribute] = value
@@ -239,7 +234,6 @@ class RouteOptions:
 
             # Remove graph if it matches cycle
             for i, final_graph in enumerate(self.graphs):
-                #print(my_closed_loop)
                 if self.graphs[i].edges() == closed_loop_list:
                     self.graphs.remove(final_graph)
 
@@ -257,7 +251,6 @@ if __name__== "__main__":
     #filename = 'Arch Model 3.json'
     #filename = 'Arch Model4.json'
     filename = sys.argv[1]
-    print(filename.split(".")[0]+"_solution.json")
 
     # In[60]:
 
@@ -287,7 +280,6 @@ if __name__== "__main__":
     # Loop for each shaft option
 
     for start_node in base_graph.start_list:
-        print(start_node)
         route_options = RouteOptions(base_graph.graph, base_graph.shaft_name, start_node, base_graph.end_list)
         route_options.create_all_paths_to_each_target()
         route_options.create_all_path_combinations()
@@ -356,5 +348,5 @@ if __name__== "__main__":
 
             data["Solutions"] = solutions
 
-    with open(os.path.abspath(filename.split(".")[0]+"_solution.json"), 'w') as outfile:
-        json.dump(data, outfile)
+with open(os.path.abspath(filename.split(".")[0]+"_solution.json"), 'w') as outfile:
+    json.dump(data, outfile)
