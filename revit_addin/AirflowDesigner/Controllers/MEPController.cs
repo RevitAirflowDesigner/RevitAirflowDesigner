@@ -134,7 +134,23 @@ namespace AirflowDesigner.Controllers
                             double dist = otherConn.Origin.DistanceTo(conn.Origin);
                             if (dist < 0.01)
                             {
-                                conn.ConnectTo(otherConn);
+                                // what's the angle between them.
+                                double angle = conn.CoordinateSystem.BasisZ.AngleTo(otherConn.CoordinateSystem.BasisZ);
+
+                                // see what kind.
+                                if ((angle < 0.001) || (angle > 0.99 * Math.PI))
+                                {
+                                    // straight!
+                                    FamilyInstance fi = 
+                                        duct.Document.Create.NewTransitionFitting(conn, otherConn);
+                                }
+                                else
+                                {
+                                    // elbow
+                                    FamilyInstance fi =
+                                        duct.Document.Create.NewElbowFitting(conn, otherConn);
+                                }
+
                             }
                         }
 

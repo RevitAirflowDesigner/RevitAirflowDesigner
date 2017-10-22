@@ -40,11 +40,15 @@ namespace AirflowDesigner.UI
                 var typ = cbDuctTypes.SelectedItem as Autodesk.Revit.DB.Mechanical.DuctType;
 
                 _controller.DrawSolution(_sol, _nodes, sys.Id, typ.Id);
+
+               
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.GetType().Name + ": " + ex.Message);
             }
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }
