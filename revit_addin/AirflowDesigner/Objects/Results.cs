@@ -10,5 +10,11 @@ namespace AirflowDesigner.Objects
     {
         public List<Solution> Solutions { get; set; }
         public List<Node> Nodes { get; set; }
+
+        public Results()
+        {
+            Solutions = new List<Solution>();
+            Nodes = new List<Node>();
+        }
     }
 }

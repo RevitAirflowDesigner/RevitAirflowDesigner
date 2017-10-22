@@ -14,26 +14,22 @@ namespace AirflowDesigner.UI
     {
         private Controllers.Controller _controller;
         private Autodesk.Revit.UI.UIApplication _uiApp;
-        private enum ActionEnum { None, GetRoutes, Show, DrawRoute };
+        private enum ActionEnum { None, Show, DrawRoute };
         private ActionEnum _action = ActionEnum.None;
 
-        public Load(Controllers.Controller c)
+        public Load(Controllers.Controller c, Autodesk.Revit.UI.UIApplication uiApp)
         {
             InitializeComponent();
             _controller = c;
-            _controller.View = this;
+            //_controller.View = this;
             _uiApp = uiApp;
 
             //register for idling callback
             _uiApp.Idling += _uiApp_Idling;
-            _action = ActionEnum.DrawRoute;
+            _action = ActionEnum.None;
 
         }
-        public void UpdateStatus(string msg)
-        {
-
-
-        }
+       
         private void _uiApp_Idling(object sender, Autodesk.Revit.UI.Events.IdlingEventArgs e)
         {
             ActionEnum tmp = _action;
@@ -41,18 +37,15 @@ namespace AirflowDesigner.UI
 
             switch (tmp)
             {
-                case ActionEnum.GetRoutes:
-                    getRoutes();
-                    break;
+               
+                   
 
+               
             }
 
         }
 
-        private void getRoutes()
-        {
-
-        }
+       
 
         private void btn_Close_Click(object sender, EventArgs e)
         {

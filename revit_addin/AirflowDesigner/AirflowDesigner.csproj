@@ -62,10 +62,10 @@
     <Compile Include="Command.cs" />
     <Compile Include="Controllers\Controller.cs" />
     <Compile Include="ExternalApp.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="UI\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="UI\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Objects\Network.cs" />
@@ -83,7 +83,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Form1.resx">
+    <EmbeddedResource Include="UI\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Load.resx">

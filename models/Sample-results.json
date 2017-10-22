@@ -1,0 +1,96 @@
+{
+	"Solutions": [{
+			"Shaft": "Shaft1",
+			"SheetMetal": 5.0,
+			"Cost": 10.0,
+			"StaticPressure": 5.0,
+			"Edges": [{
+					"Node1": 1,
+					"Node2": 2,
+					"Distance": 10.0,
+					"Diameter": 5.0,
+					"Airflow": 5.0
+				}, {
+					"Node1": 2,
+					"Node2": 3,
+					"Distance": 2.0,
+					"Diameter": 6.0,
+					"Airflow": 7.0
+				}, {
+					"Node1": 3,
+					"Node2": 4,
+					"Distance": 5.0,
+					"Diameter": 2.0,
+					"Airflow": 9.0
+				}
+			]
+		}, {
+			"Shaft": "Shaft1",
+			"SheetMetal": 5.0,
+			"Cost": 10.0,
+			"StaticPressure": 5.0,
+			"Edges": [{
+					"Node1": 3,
+					"Node2": 1,
+					"Distance": 11.0,
+					"Diameter": 10.0,
+					"Airflow": 4.0
+				}, {
+					"Node1": 1,
+					"Node2": 2,
+					"Distance": 8.0,
+					"Diameter": 7.0,
+					"Airflow": 8.0
+				}, {
+					"Node1": 2,
+					"Node2": 4,
+					"Distance": 15.0,
+					"Diameter": 9.0,
+					"Airflow": 12.0
+				}
+			]
+		}
+	],
+	"Nodes": [{
+			"Id": 1,
+			"Name": "Node1V",
+			"NodeType": "Vav",
+			"Location": {
+				"Z": 0.0,
+				"Y": 0.0,
+				"X": 0.0
+			},
+			"SpaceId": "1234"
+		}, {
+			"Id": 2,
+			"Name": "Node2C",
+			"NodeType": "Other",
+			"Location": {
+				"Z": 0.0,
+				"Y": 0.0,
+				"X": 0.0
+			},
+			"SpaceId": null
+		}, {
+			"Id": 3,
+			"Name": "Node3C",
+			"NodeType": "Other",
+			"Location": {
+				"Z": 0.0,
+				"Y": 0.0,
+				"X": 0.0
+			},
+			"SpaceId": null
+		}, {
+			"Id": 4,
+			"Name": "Node4S",
+			"NodeType": "Shaft",
+			"Location": {
+				"Z": 0.0,
+				"Y": 0.0,
+				"X": 0.0
+			},
+			"SpaceId": "1234"
+		}
+	]
+}

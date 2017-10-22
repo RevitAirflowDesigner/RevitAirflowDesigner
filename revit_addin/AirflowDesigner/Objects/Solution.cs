@@ -14,5 +14,10 @@ namespace AirflowDesigner.Objects
         public double StaticPressure { get; set; }
 
         public List<Edge> Edges { get; set; }
+
+        public Solution()
+        {
+            Edges = new List<Edge>();
+        }
     }
 }

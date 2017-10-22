@@ -147,6 +147,6 @@ C:\CTD_Projects\RevitAirflowDesigner\revit_addin\AirflowDesigner\obj\Debug\Airfl
 C:\CTD_Projects\RevitAirflowDesigner\revit_addin\AirflowDesigner\obj\Debug\AirflowDesigner.csproj.GenerateResource.Cache
 C:\CTD_Projects\RevitAirflowDesigner\revit_addin\AirflowDesigner\obj\Debug\AirflowDesigner.dll
 C:\CTD_Projects\RevitAirflowDesigner\revit_addin\AirflowDesigner\obj\Debug\AirflowDesigner.pdb
-C:\Users\mmason\Source\Repos\RevitAirflowDesigner\revit_addin\AirflowDesigner\obj\Debug\AirflowDesigner.Load.resources
 C:\CTD_Projects\RevitAirflowDesigner\revit_addin\AirflowDesigner\obj\Debug\AirflowDesigner.csprojResolveAssemblyReference.cache
 C:\CTD_Projects\RevitAirflowDesigner\revit_addin\AirflowDesigner\obj\Debug\AirflowDesigner.UI.Load.resources
+C:\Users\mmason\Source\Repos\RevitAirflowDesigner\revit_addin\AirflowDesigner\obj\Debug\AirflowDesigner.UI.Load.resources
