@@ -74,26 +74,47 @@ namespace AirflowDesigner
                     MessageBox.Show("The duct network has been saved." +Environment.NewLine + 
                                     "  # of Nodes: " + network.Nodes.Count + Environment.NewLine + 
                                     "  # of Edges: " + network.Edges.Count);
+
+                    var results = _controller.Calculate(saveFileDialog1.FileName);
+
+                    if (results.Error == false)
+                    {
+                        // launch the results form.
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("An error occurred while analyzing the data: " + results.ErrorMessage);
+                    }
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
 
-                ProcessStartInfo pythonInfo = new ProcessStartInfo();
-                Process python;
-                pythonInfo.FileName = @"C:\ProgramData\Anaconda3\python.exe";
-                pythonInfo.Arguments = @"C:\Users\ahanif\Desktop\python_script\test.py";
-                pythonInfo.CreateNoWindow = false;
-                pythonInfo.UseShellExecute = true;
-
-                Console.WriteLine("Python Starting");
-                python = Process.Start(pythonInfo);
-                python.WaitForExit();
-                python.Close();
+                
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.GetType().Name + ": " + ex.Message + Environment.NewLine + ex.StackTrace);
+            }
+        }
+
+        private void launchResults(Objects.AnalysisResults res)
+        {
+            UI.Load f = new UI.Load(_controller, _controller.GetUIDoc().Application, res.File );
+            f.Text += " (Runtime: " + res.Span + ")";
+
+            IntPtr currentRevitWin = Utilities.WindowsUtils.GetMainWindowHandle();
+            if (currentRevitWin != null)
+            {
+                UI.WindowHandle handle = new UI.WindowHandle(currentRevitWin);
+
+                f.Show(handle);
+                Utilities.WindowsUtils.RegisterModeless(f);  // keep track of it, so that we can close it later and prevent two at the same time.
+            }
+            else
+            {
+                f.Show();
             }
         }
 

@@ -17,6 +17,12 @@ namespace AirflowDesigner
         {
             try
             {
+                // double check Python
+                string py = Utilities.WindowsUtils.FindPython();
+                if (String.IsNullOrEmpty(py))
+                {
+                    MessageBox.Show("This application requires Python to be installed on the machine. Please install it (We suggest Anaconda Python");
+                }
 
                 Utilities.WindowsUtils.CloseAll(); // Close any open modeless windows we know about.
 

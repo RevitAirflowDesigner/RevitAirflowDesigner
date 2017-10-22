@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\MEPController.cs" />
+    <Compile Include="Objects\AnalysisResults.cs" />
     <Compile Include="UI\CreateForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +105,10 @@
     <Compile Include="Utilities\WindowsUtils.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\python\RevitAirflowDesigner.py">
+      <Link>RevitAirflowDesigner.py</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -9,6 +9,7 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Mechanical;
 using AirflowDesigner.UI;
 using System.IO;
+using System.Diagnostics;
 
 namespace AirflowDesigner.Controllers
 {
@@ -249,6 +250,60 @@ namespace AirflowDesigner.Controllers
             return _uiDoc.Document.PathName.Replace(".rvt", "");
         }
 
+
+        public Objects.AnalysisResults Calculate( string filename )
+        {
+            DateTime start = DateTime.Now;
+            Objects.AnalysisResults results = new Objects.AnalysisResults();
+            try
+            {
+                string pyExe = Utilities.WindowsUtils.FindPython();
+                if (String.IsNullOrEmpty(pyExe)) throw new ApplicationException("Unable to find Python software installed on your machine (via registry)");
+
+                pyExe = Path.Combine(pyExe, "python.exe");
+
+                if (File.Exists(pyExe) == false) throw new ApplicationException("The python executable appeared to be installed but was not found here: " + pyExe);
+                System.Diagnostics.ProcessStartInfo pythonInfo = new ProcessStartInfo();
+                Process python;
+                pythonInfo.FileName = pyExe;
+
+                string pyFile = System.IO.Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "RevitAirflowDesigner.py");
+
+                if (File.Exists(pyFile) == false) throw new ApplicationException("Missing Python File: " + pyFile);
+
+
+                pythonInfo.Arguments = "\"" + pyFile + "\" \"" + filename + "\"";
+                pythonInfo.CreateNoWindow = false;
+                pythonInfo.UseShellExecute = true;
+
+
+                python = Process.Start(pythonInfo);
+                python.WaitForExit();
+                python.Close();
+
+                // now see if the output file is present.
+                System.Threading.Thread.Sleep(1000);
+
+                string folder = Path.GetDirectoryName(filename);
+                string outFile = Path.Combine(folder, Path.GetFileNameWithoutExtension(filename) + "_solution.json");
+                results.File = outFile;
+
+                if (File.Exists(outFile) == false) throw new ApplicationException("The output file from Python does not appear to have been generated. Expected Result File: " + outFile);
+            }
+            catch (Exception ex)
+            {
+                results.Error = true;
+                results.ErrorMessage = ex.GetType().Name + ": " + ex.Message;
+            }
+            finally
+            {
+                results.Span = DateTime.Now - start;
+            }
+
+            return results;
+
+        }
+
         public void DrawSolution(Objects.Solution sol, IList<Objects.Node> nodes, ElementId system, ElementId ductType)
         {
             Transaction t = null;
@@ -289,6 +344,8 @@ namespace AirflowDesigner.Controllers
 
             IList<MEPCurve> crvDucts = corrDucts.Cast<MEPCurve>().ToList();
 
+            var vavInstances = GetAllVAVs();
+
             foreach ( var edge in vavEdges)
             {
                 //Objects.Node n1 = nodes.Single(n => n.Id == edge.Node1);
@@ -296,7 +353,7 @@ namespace AirflowDesigner.Controllers
 
                 //MEPController.MakeDuct(_uiDoc.Document, n1.Location, n2.Location, ductType, system, edge.Diameter, 0.0);
 
-                Duct d = createVAVConnection(edge, ductType, system, nodes, crvDucts, fittings);
+                Duct d = createVAVConnection(edge, ductType, system, nodes, crvDucts, vavInstances, fittings);
 
 
             }
@@ -315,6 +372,7 @@ namespace AirflowDesigner.Controllers
             if (t != null) t.Commit();
         }
         public Autodesk.Revit.DB.Document GetDocument() { return _uiDoc.Document; }
+        public Autodesk.Revit.UI.UIDocument GetUIDoc() { return _uiDoc; }
 
         public void ShowSolution(Objects.Solution sol, IList<Objects.Node> nodes, string colorBy)
         {
@@ -508,7 +566,7 @@ namespace AirflowDesigner.Controllers
         #endregion
 
         #region PrivateMethods
-        private Duct createVAVConnection(Objects.Edge edge, ElementId ductType, ElementId system, IList<Objects.Node> nodes, IList<MEPCurve> curves, IList<FamilyInstance> fittings)
+        private Duct createVAVConnection(Objects.Edge edge, ElementId ductType, ElementId system, IList<Objects.Node> nodes, IList<MEPCurve> curves, IList<FamilyInstance> vavs, IList<FamilyInstance> fittings)
         {
             Objects.Node n1 = nodes.Single(n => n.Id == edge.Node1);
             Objects.Node n2 = nodes.Single(n => n.Id == edge.Node2);
@@ -542,6 +600,9 @@ namespace AirflowDesigner.Controllers
 
             FamilyInstance fi2 = MEPController.MakeTakeOff(tap, toConnect);
             if (fi2 != null) fittings.Add(fi2);
+
+            // connect to the Vav
+           //FamilyInstance fi = findNearest(vavs, vavNode.Location)
 
             return d;
 
