@@ -69,6 +69,11 @@ namespace AirflowDesigner.UI
                     {
 
                         UI.CreateForm create = new CreateForm(_controller, sol, _results.Nodes);
+                        if (create.ShowDialog(this) == DialogResult.OK)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
+                        }
                     }
                 }
             }
@@ -161,6 +166,11 @@ namespace AirflowDesigner.UI
         private void onRowSelected(object sender, EventArgs e)
         {
             _action = ActionEnum.Show;
+        }
+
+        private void btn_Generate_Click(object sender, EventArgs e)
+        {
+            _action = ActionEnum.DrawRoute;
         }
     }
 }

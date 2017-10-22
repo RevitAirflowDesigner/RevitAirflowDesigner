@@ -217,7 +217,7 @@ namespace AirflowDesigner.Controllers
         public void DrawSolution(Objects.Solution sol, IList<Objects.Node> nodes, ElementId system, ElementId ductType)
         {
             Transaction t = null;
-            if(_uiDoc.Document.IsModifiable)
+            if(_uiDoc.Document.IsModifiable == false)
             {
                 t = new Transaction(_uiDoc.Document, "Create Ductwork");
                 t.Start();
@@ -225,13 +225,52 @@ namespace AirflowDesigner.Controllers
 
             Utilities.AVFUtility.Clear(_uiDoc);
 
-            foreach( var edge in sol.Edges)
+
+            // start with the corridor
+            IList<Objects.Edge> corrEdges = sol.GetCorridorEdges(nodes);
+
+            List<Duct> corrDucts = new List<Duct>();
+            List<Duct> allDucts = new List<Duct>();
+            SubTransaction st = new SubTransaction(_uiDoc.Document);
+            st.Start();
+            foreach( var edge in corrEdges )
+            {
+                Objects.Node n1 = nodes.Single(n => n.Id == edge.Node1);
+                Objects.Node n2 = nodes.Single(n => n.Id == edge.Node2);
+
+                Duct d = 
+                    MEPController.MakeDuct(_uiDoc.Document, n1.Location, n2.Location, ductType, system, edge.Diameter, 0.0);
+
+                corrDucts.Add(d);
+                allDucts.Add(d);
+
+            }
+            st.Commit();
+            _uiDoc.Document.Regenerate();
+
+            MEPController.JoinDucts(corrDucts);
+
+            IList<Objects.Edge> vavEdges = sol.GetVAVEdges(nodes);
+
+
+            foreach ( var edge in vavEdges)
             {
                 Objects.Node n1 = nodes.Single(n => n.Id == edge.Node1);
                 Objects.Node n2 = nodes.Single(n => n.Id == edge.Node2);
 
                 MEPController.MakeDuct(_uiDoc.Document, n1.Location, n2.Location, ductType, system, edge.Diameter, 0.0);
 
+
+            }
+
+            IList<Objects.Edge> shaftEdges = sol.GetShaftEdges(nodes);
+
+            foreach( var edge in shaftEdges )
+            {
+                Objects.Node n1 = nodes.Single(n => n.Id == edge.Node1);
+                Objects.Node n2 = nodes.Single(n => n.Id == edge.Node2);
+
+                MEPController.MakeDuct(_uiDoc.Document, n1.Location, n2.Location, ductType, system, edge.Diameter, 0.0);
 
             }
 
