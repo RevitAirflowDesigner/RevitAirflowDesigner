@@ -204,8 +204,17 @@ namespace AirflowDesigner.UI
             }
             else
             {
-                dir = ListSortDirection.Descending;
-                dataGridView1.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection = SortOrder.Descending;
+                if (_lastSortCol == e.ColumnIndex)
+                {
+                    // reverse
+                    dir = (dataGridView1.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection == SortOrder.Ascending) ? ListSortDirection.Descending : ListSortDirection.Ascending;
+
+                }
+                else
+                {
+                    dir = ListSortDirection.Descending;
+                    dataGridView1.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection = SortOrder.Descending;
+                }
             }
 
 

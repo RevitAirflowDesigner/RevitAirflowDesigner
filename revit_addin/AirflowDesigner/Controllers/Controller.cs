@@ -251,17 +251,20 @@ namespace AirflowDesigner.Controllers
             st.Commit();
             _uiDoc.Document.Regenerate();
 
-            MEPController.JoinDucts(corrDucts);
+            IList<FamilyInstance> fittings = MEPController.JoinDucts(corrDucts);
 
             IList<Objects.Edge> vavEdges = sol.GetVAVEdges(nodes);
 
+            IList<MEPCurve> crvDucts = corrDucts.Cast<MEPCurve>().ToList();
 
             foreach ( var edge in vavEdges)
             {
-                Objects.Node n1 = nodes.Single(n => n.Id == edge.Node1);
-                Objects.Node n2 = nodes.Single(n => n.Id == edge.Node2);
+                //Objects.Node n1 = nodes.Single(n => n.Id == edge.Node1);
+                //Objects.Node n2 = nodes.Single(n => n.Id == edge.Node2);
 
-                MEPController.MakeDuct(_uiDoc.Document, n1.Location, n2.Location, ductType, system, edge.Diameter, 0.0);
+                //MEPController.MakeDuct(_uiDoc.Document, n1.Location, n2.Location, ductType, system, edge.Diameter, 0.0);
+
+                Duct d = createVAVConnection(edge, ductType, system, nodes, crvDucts, fittings);
 
 
             }
@@ -473,6 +476,85 @@ namespace AirflowDesigner.Controllers
         #endregion
 
         #region PrivateMethods
+        private Duct createVAVConnection(Objects.Edge edge, ElementId ductType, ElementId system, IList<Objects.Node> nodes, IList<MEPCurve> curves, IList<FamilyInstance> fittings)
+        {
+            Objects.Node n1 = nodes.Single(n => n.Id == edge.Node1);
+            Objects.Node n2 = nodes.Single(n => n.Id == edge.Node2);
+
+            Objects.Node vavNode = n1;
+            if (n1.NodeType != Objects.Node.NodeTypeEnum.Vav) vavNode = n2;
+
+            Objects.Node corrNode = n1;
+            if (n1.NodeType != Objects.Node.NodeTypeEnum.Other) corrNode = n2;
+
+            // find the nearest VAV to vavNode;
+
+            // determine if we need to shift the connector on the corridor
+            var fi = isFittingAtPoint(corrNode.Location, fittings, 0.1);
+
+            MEPCurve toConnect = null;
+            if (fi != null)
+            {
+                MEPController.MoveFittingAway(fi, edge.Diameter, out toConnect);
+            }
+
+            Duct d =
+                MEPController.MakeDuct(_uiDoc.Document, vavNode.Location, corrNode.Location, ductType, system, edge.Diameter, 0.0);
+
+            Connector tap = MEPController.GetNearestConnector(d, corrNode.Location);
+           
+            if (toConnect == null)
+            {
+                toConnect = findNearestCurve(corrNode.Location, curves, 0.05);
+            }
+
+            FamilyInstance fi2 = MEPController.MakeTakeOff(tap, toConnect);
+            if (fi2 != null) fittings.Add(fi2);
+
+            return d;
+
+
+        }
+
+        private FamilyInstance isFittingAtPoint(XYZ pt, IList<FamilyInstance> fis, double tolerance)
+        {
+            foreach( FamilyInstance fi in fis )
+            {
+                if (fi.MEPModel == null) continue;
+                foreach( Connector c in fi.MEPModel.ConnectorManager.Connectors)
+                {
+                    double dist = c.Origin.DistanceTo(pt);
+                    if (dist < tolerance) return fi;
+                }
+            }
+
+            return null;
+        }
+
+        private MEPCurve findNearestCurve(XYZ pt, IList<MEPCurve> curves, double tolerance)
+        {
+            double nearest = 9999999;
+            MEPCurve nearestCrv = null;
+            foreach (MEPCurve crv in curves)
+            {
+                LocationCurve lc = crv.Location as LocationCurve;
+                if (lc != null)
+                {
+                    var result = lc.Curve.Project(pt);
+                    if ((result != null) && (result.Distance < tolerance))
+                    {
+                        if (result.Distance < nearest)
+                        {
+                            nearest = result.Distance;
+                            nearestCrv = crv;
+                        }
+                    }
+                }
+            }
+
+            return nearestCrv;
+        }
+
 
         private IList<Objects.Node> getNodesOnLine(Line cl, IList<Objects.Node> nodes)
         {

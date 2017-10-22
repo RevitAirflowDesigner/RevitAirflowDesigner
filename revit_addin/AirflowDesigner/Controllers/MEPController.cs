@@ -128,10 +128,28 @@ namespace AirflowDesigner.Controllers
             return null;
         }
 
-        public static void JoinDucts(IList<Duct> ducts)
+        public static Connector GetNearestConnector(MEPCurve crv, XYZ point)
+        {
+            double nearest = 999999;
+            Connector nearC = null;
+            foreach( Connector c in crv.ConnectorManager.Connectors)
+            {
+                double dist = c.Origin.DistanceTo(point);
+                if (dist < nearest)
+                {
+                    nearest = dist;
+                    nearC = c;
+                }
+            }
+
+            return nearC;
+        }
+
+        public static IList<FamilyInstance> JoinDucts(IList<Duct> ducts)
         {
             // we want to go through the ducts.
             // find ducts that have coincident endpoints.
+            List<FamilyInstance> fittings = new List<FamilyInstance>();
 
             foreach (var duct in ducts)
             {
@@ -155,12 +173,14 @@ namespace AirflowDesigner.Controllers
                                     // straight!
                                     FamilyInstance fi = 
                                         duct.Document.Create.NewTransitionFitting(conn, otherConn);
+                                    if (fi != null) fittings.Add(fi);
                                 }
                                 else
                                 {
                                     // elbow
                                     FamilyInstance fi =
                                         duct.Document.Create.NewElbowFitting(conn, otherConn);
+                                    if (fi != null) fittings.Add(fi);
                                 }
 
                             }
@@ -169,22 +189,107 @@ namespace AirflowDesigner.Controllers
                     }
                 }
             }
+            return fittings;
         }
 
-        public static void MoveFittingAway(FamilyInstance fi, double distance)
+        public static FamilyInstance MakeTakeOff(Connector c, MEPCurve crv)
+        {
+            return crv.Document.Create.NewTakeoffFitting(c, crv);
+        }
+
+        public static void MoveFittingAway(FamilyInstance fi, double distance, out MEPCurve moved)
         {
             // move the fitting from the larger side towards the smaller side by a 
             // certain distance, so that we can more easily T into it.
+            moved = null;
 
-            //Transaction t = null;
-            //if (fi.Document.IsModifiable == false)
-            //{
-            //    t = new Transaction()
-            //}
+            Transaction t = null;
+            if (fi.Document.IsModifiable == false)
+            {
+                t = new Transaction(fi.Document, "Move Fitting");
+                t.Start();
+            }
+
+            // determine which way to move.
+            Connector c1 = null;
+            Connector c2 = null;
+            getOppositeConnectors(fi, out c1, out c2);
+
+            // which way is bigger?
+            XYZ dir = null;
+            MEPCurve other = null;
+            MEPCurve bigger = null;
+            if (c1.Radius > c2.Radius)
+            {
+                // move towards c2;
+                dir = c2.Origin.Subtract(c1.Origin).Normalize();
+
+                other = getConnectedCurve(c2);
+                bigger = getConnectedCurve(c1);
+                
+            }
+            else
+            {
+                // move towards c1;
+                dir = c1.Origin.Subtract(c2.Origin).Normalize();
+                other = getConnectedCurve(c1);
+                bigger = getConnectedCurve(c2);
+            }
+            
+            // sanity check that the connector we're moving towards, that the connected MEPCurve 
+            // actually is long enough to move that far!
+            if ((other != null))
+            {
+                LocationCurve lc = other.Location as LocationCurve;
+                if (lc != null)
+                {
+                    if (lc.Curve.Length < distance)
+                    {
+                        other.Document.Application.WriteJournalComment("NOTE: Unable to move fitting by " + distance + " because it is only " + lc.Curve.Length + " long.", false);
+                        return;
+                    }
+                }
+            }
+
+
+            ElementTransformUtils.MoveElement(fi.Document, fi.Id, dir.Multiply(distance));
+
+            fi.Document.Regenerate();
+            moved = bigger;
+            if (t != null)
+            {
+                t.Commit();
+            }
 
         }
 
         #region PrivateMethods
+
+        private static MEPCurve getConnectedCurve( Connector c )
+        {
+            if (c.IsConnected == false) return null;
+
+            foreach( Connector other in c.AllRefs)
+            {
+                MEPCurve crv = other.Owner as MEPCurve;
+                if (crv != null) return crv;
+            }
+
+            return null;
+        }
+
+        private static void getOppositeConnectors(FamilyInstance fi, out Connector c1, out Connector c2)
+        {
+            // for these connectors, there's basically almost always two
+            List<Connector> conns = new List<Connector>();
+            foreach( Connector c in fi.MEPModel.ConnectorManager.Connectors)
+            {
+                conns.Add(c);
+            }
+
+            c1 = conns.First();
+            c2 = conns.Last();
+        }
         private static IList<Level> getAllLevelsBelow(Document doc, double elevation)
         {
             FilteredElementCollector coll = new FilteredElementCollector(doc);
