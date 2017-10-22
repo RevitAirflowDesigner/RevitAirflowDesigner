@@ -51,6 +51,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(497, 261);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.onCellHeaderClick);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.onRowSelected);
             // 
             // btn_Generate

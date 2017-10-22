@@ -17,8 +17,10 @@ namespace AirflowDesigner.UI
         private enum ActionEnum { None, Show, DrawRoute };
         private ActionEnum _action = ActionEnum.None;
         private Objects.Results _results;
+        private int _lastSortCol = 1;
+        private ListSortDirection _lastDir;
 
-        public Load(Controllers.Controller c, Autodesk.Revit.UI.UIApplication uiApp)
+        public Load(Controllers.Controller c, Autodesk.Revit.UI.UIApplication uiApp, string filename = null)
         {
             InitializeComponent();
             _controller = c;
@@ -33,6 +35,16 @@ namespace AirflowDesigner.UI
             cbColorBy.Items.Add("Diameter");
             cbColorBy.Items.Add("Airflow");
             cbColorBy.SelectedIndex = 0;
+
+            try
+            {
+                if (filename != null) loadResults(filename);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Loading Issue: " + ex.GetType().Name + ": " + ex.Message);
+            }
+            
 
         }
        
@@ -100,10 +112,7 @@ namespace AirflowDesigner.UI
                 if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
                 {
 
-                    _results = _controller.DeSerialize(openFileDialog1.FileName);
-
-                    dataGridView1.DataSource = _results.Solutions;
-                    dataGridView1.Update();
+                    loadResults(openFileDialog1.FileName);
                 }
 
             }
@@ -112,6 +121,17 @@ namespace AirflowDesigner.UI
                 MessageBox.Show("Error: " + ex.GetType().Name + ": " + ex.Message + Environment.NewLine + ex.StackTrace);
             }
 
+        }
+
+        private void loadResults(string filename)
+        {
+            _results = _controller.DeSerialize(filename);
+
+            BindingSource bs = new BindingSource();
+            bs.DataSource = _results.Solutions;
+
+            dataGridView1.DataSource = bs;
+            dataGridView1.Update();
         }
 
         private void performShow()
@@ -171,6 +191,26 @@ namespace AirflowDesigner.UI
         private void btn_Generate_Click(object sender, EventArgs e)
         {
             _action = ActionEnum.DrawRoute;
+        }
+
+        private void onCellHeaderClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            ListSortDirection dir = ListSortDirection.Ascending;
+
+            if ((_lastSortCol == -1)||(_lastSortCol != e.ColumnIndex))
+            {
+                dir = ListSortDirection.Ascending;
+                dataGridView1.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection = SortOrder.Ascending;
+            }
+            else
+            {
+                dir = ListSortDirection.Descending;
+                dataGridView1.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection = SortOrder.Descending;
+            }
+
+
+            dataGridView1.Sort(dataGridView1.Columns[e.ColumnIndex], dir);
+
         }
     }
 }
