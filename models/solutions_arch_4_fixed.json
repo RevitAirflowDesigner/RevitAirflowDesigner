@@ -1,0 +1,3984 @@
+{
+  "Nodes": [
+    {
+      "Id": 2,
+      "Name": "Corridor",
+      "NodeType": "Other",
+      "Location": {
+        "Z": 11,
+        "Y": -12.164513600912704,
+        "X": -31.691174469065935
+      },
+      "SpaceId": null
+    },
+    {
+      "Id": 1,
+      "Name": "VAV-969355",
+      "NodeType": "Vav",
+      "Location": {
+        "Z": 11,
+        "Y": -19.47877494946583,
+        "X": -31.69117446906595
+      },
+      "SpaceId": "ca5699eb-5fbf-49e0-b030-42f100b1d06e-000eb891"
+    },
+    {
+      "Id": 4,
+      "Name": "Corridor",
+      "NodeType": "Other",
+      "Location": {
+        "Z": 11,
+        "Y": 24.271225050534156,
+        "X": -35.22940024050727
+      },
+      "SpaceId": null
+    },
+    {
+      "Id": 3,
+      "Name": "VAV-969476",
+      "NodeType": "Vav",
+      "Location": {
+        "Z": 11,
+        "Y": 24.27122505053417,
+        "X": -42.691174469065864
+      },
+      "SpaceId": "ca5699eb-5fbf-49e0-b030-42f100b1d06e-000eb888"
+    },
+    {
+      "Id": 6,
+      "Name": "Corridor",
+      "NodeType": "Other",
+      "Location": {
+        "Z": 11,
+        "Y": 27.83548639908723,
+        "X": 12.142158864267415
+      },
+      "SpaceId": null
+    },
+    {
+      "Id": 5,
+      "Name": "VAV-969542",
+      "NodeType": "Vav",
+      "Location": {
+        "Z": 11,
+        "Y": 34.11811724381244,
+        "X": 12.142158864267437
+      },
+      "SpaceId": "ca5699eb-5fbf-49e0-b030-42f100b1d06e-000eb88b"
+    },
+    {
+      "Id": 8,
+      "Name": "Corridor",
+      "NodeType": "Other",
+      "Location": {
+        "Z": 11,
+        "Y": -9.228774949465986,
+        "X": 15.770599759492681
+      },
+      "SpaceId": null
+    },
+    {
+      "Id": 7,
+      "Name": "VAV-969594",
+      "NodeType": "Vav",
+      "Location": {
+        "Z": 11,
+        "Y": -9.228774949466,
+        "X": 23.80882553093405
+      },
+      "SpaceId": "ca5699eb-5fbf-49e0-b030-42f100b1d06e-000eb88e"
+    },
+    {
+      "Id": 10,
+      "Name": "Corridor",
+      "NodeType": "Other",
+      "Location": {
+        "Z": 11,
+        "Y": 27.835486399087344,
+        "X": -22.767782965653794
+      },
+      "SpaceId": null
+    },
+    {
+      "Id": 9,
+      "Name": "VAV-969649",
+      "NodeType": "Vav",
+      "Location": {
+        "Z": 11,
+        "Y": 17.673177362189715,
+        "X": -22.767782965653826
+      },
+      "SpaceId": "ca5699eb-5fbf-49e0-b030-42f100b1d06e-000eb897"
+    },
+    {
+      "Id": 12,
+      "Name": "Corridor-To-Shaft",
+      "NodeType": "Other",
+      "Location": {
+        "Z": 11,
+        "Y": 16.61067736218959,
+        "X": 15.770599759492722
+      },
+      "SpaceId": null
+    },
+    {
+      "Id": 11,
+      "Name": "Shaft-969767",
+      "NodeType": "Shaft",
+      "Location": {
+        "Z": 11,
+        "Y": 16.610677362189605,
+        "X": 7.732217034346176
+      },
+      "SpaceId": null
+    },
+    {
+      "Id": 13,
+      "Name": "CorridorEnd",
+      "NodeType": "Other",
+      "Location": {
+        "Z": 11,
+        "Y": 27.835486399087383,
+        "X": -35.22940024050726
+      },
+      "SpaceId": null
+    },
+    {
+      "Id": 14,
+      "Name": "CorridorEnd",
+      "NodeType": "Other",
+      "Location": {
+        "Z": 11,
+        "Y": 27.83548639908722,
+        "X": 15.77059975949274
+      },
+      "SpaceId": null
+    },
+    {
+      "Id": 15,
+      "Name": "CorridorEnd",
+      "NodeType": "Other",
+      "Location": {
+        "Z": 11,
+        "Y": -12.16451360091278,
+        "X": 15.770599759492676
+      },
+      "SpaceId": null
+    },
+    {
+      "Id": 16,
+      "Name": "CorridorEnd",
+      "NodeType": "Other",
+      "Location": {
+        "Z": 11,
+        "Y": -12.164513600912699,
+        "X": -35.229400240507324
+      },
+      "SpaceId": null
+    }
+  ],
+  "Solutions": [
+    {
+      "Id": 0,
+      "Shaft": "Shaft-969767",
+      "SheetMetal": 5,
+      "Cost": 15,
+      "Static Pressure": 2,
+      "Edges": [
+        {
+          "Node1": 11,
+          "Node2": 12,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 14,
+          "Node2": 6,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 10,
+          "Distance": 20,
+          "Diameter": 2,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 5,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 9,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 13,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 13,
+          "Node2": 4,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 3,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 16,
+          "Node2": 2,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 1,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 15,
+          "Node2": 8,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 7,
+          "Distance": 20,
+          "Diameter": 1,
+          "Airflow": 1000
+        }
+      ]
+    },
+    {
+      "Id": 1,
+      "Shaft": "Shaft-969767",
+      "SheetMetal": 5,
+      "Cost": 15,
+      "Static Pressure": 2,
+      "Edges": [
+        {
+          "Node1": 11,
+          "Node2": 12,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 8,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 14,
+          "Node2": 6,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 10,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 5,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 13,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 9,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 13,
+          "Node2": 4,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 3,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 16,
+          "Node2": 2,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 1,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 15,
+          "Node2": 8,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 7,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        }
+      ]
+    },
+    {
+      "Id": 2,
+      "Shaft": "Shaft-969767",
+      "SheetMetal": 5,
+      "Cost": 15,
+      "Static Pressure": 2,
+      "Edges": [
+        {
+          "Node1": 11,
+          "Node2": 12,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 8,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 14,
+          "Node2": 6,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 10,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 5,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 9,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 13,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 13,
+          "Node2": 4,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 3,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 16,
+          "Node2": 2,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 1,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 7,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        }
+      ]
+    },
+    {
+      "Id": 3,
+      "Shaft": "Shaft-969767",
+      "SheetMetal": 5,
+      "Cost": 15,
+      "Static Pressure": 2,
+      "Edges": [
+        {
+          "Node1": 11,
+          "Node2": 12,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 8,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 14,
+          "Node2": 6,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 5,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 10,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 13,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 9,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 13,
+          "Node2": 4,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 3,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 16,
+          "Node2": 2,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 1,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 7,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        }
+      ]
+    },
+    {
+      "Id": 4,
+      "Shaft": "Shaft-969767",
+      "SheetMetal": 5,
+      "Cost": 15,
+      "Static Pressure": 2,
+      "Edges": [
+        {
+          "Node1": 11,
+          "Node2": 12,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 8,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 14,
+          "Node2": 6,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 10,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 5,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 9,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 13,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 13,
+          "Node2": 4,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 3,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 16,
+          "Node2": 2,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 1,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 7,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        }
+      ]
+    },
+    {
+      "Id": 5,
+      "Shaft": "Shaft-969767",
+      "SheetMetal": 5,
+      "Cost": 15,
+      "Static Pressure": 2,
+      "Edges": [
+        {
+          "Node1": 11,
+          "Node2": 12,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 8,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 14,
+          "Node2": 6,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 10,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 5,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 13,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 9,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 13,
+          "Node2": 4,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 3,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 16,
+          "Node2": 2,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 1,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 7,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        }
+      ]
+    },
+    {
+      "Id": 6,
+      "Shaft": "Shaft-969767",
+      "SheetMetal": 5,
+      "Cost": 15,
+      "Static Pressure": 2,
+      "Edges": [
+        {
+          "Node1": 11,
+          "Node2": 12,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 8,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 14,
+          "Node2": 6,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 10,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 5,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 9,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 13,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 13,
+          "Node2": 4,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 3,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 16,
+          "Node2": 2,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 1,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 7,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        }
+      ]
+    },
+    {
+      "Id": 7,
+      "Shaft": "Shaft-969767",
+      "SheetMetal": 5,
+      "Cost": 15,
+      "Static Pressure": 2,
+      "Edges": [
+        {
+          "Node1": 11,
+          "Node2": 12,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 8,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 14,
+          "Node2": 6,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 10,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 5,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 13,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 9,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 13,
+          "Node2": 4,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 3,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 16,
+          "Node2": 2,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 1,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 7,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        }
+      ]
+    },
+    {
+      "Id": 8,
+      "Shaft": "Shaft-969767",
+      "SheetMetal": 5,
+      "Cost": 15,
+      "Static Pressure": 2,
+      "Edges": [
+        {
+          "Node1": 11,
+          "Node2": 12,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 8,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 14,
+          "Node2": 6,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 10,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 5,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 9,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 13,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 13,
+          "Node2": 4,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 3,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 16,
+          "Node2": 2,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 1,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 7,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        }
+      ]
+    },
+    {
+      "Id": 9,
+      "Shaft": "Shaft-969767",
+      "SheetMetal": 5,
+      "Cost": 15,
+      "Static Pressure": 2,
+      "Edges": [
+        {
+          "Node1": 11,
+          "Node2": 12,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 8,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 14,
+          "Node2": 6,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 10,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 5,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 13,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 9,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 13,
+          "Node2": 4,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 3,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 16,
+          "Node2": 2,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 1,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 7,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        }
+      ]
+    },
+    {
+      "Id": 10,
+      "Shaft": "Shaft-969767",
+      "SheetMetal": 5,
+      "Cost": 15,
+      "Static Pressure": 2,
+      "Edges": [
+        {
+          "Node1": 11,
+          "Node2": 12,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 8,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 14,
+          "Node2": 6,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 10,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 5,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 9,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 13,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 13,
+          "Node2": 4,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 3,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 16,
+          "Node2": 2,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 1,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 7,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        }
+      ]
+    },
+    {
+      "Id": 11,
+      "Shaft": "Shaft-969767",
+      "SheetMetal": 5,
+      "Cost": 15,
+      "Static Pressure": 2,
+      "Edges": [
+        {
+          "Node1": 11,
+          "Node2": 12,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 8,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 14,
+          "Node2": 6,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 5,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 10,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 13,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 9,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 13,
+          "Node2": 4,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 3,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 16,
+          "Node2": 2,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 1,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 7,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        }
+      ]
+    },
+    {
+      "Id": 12,
+      "Shaft": "Shaft-969767",
+      "SheetMetal": 5,
+      "Cost": 15,
+      "Static Pressure": 2,
+      "Edges": [
+        {
+          "Node1": 11,
+          "Node2": 12,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 8,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 14,
+          "Node2": 6,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 10,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 5,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 9,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 13,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 13,
+          "Node2": 4,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 3,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 16,
+          "Node2": 2,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 1,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 7,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        }
+      ]
+    },
+    {
+      "Id": 13,
+      "Shaft": "Shaft-969767",
+      "SheetMetal": 5,
+      "Cost": 15,
+      "Static Pressure": 2,
+      "Edges": [
+        {
+          "Node1": 11,
+          "Node2": 12,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 8,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 14,
+          "Node2": 6,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 10,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 5,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 13,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 9,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 13,
+          "Node2": 4,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 3,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 16,
+          "Node2": 2,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 1,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 7,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        }
+      ]
+    },
+    {
+      "Id": 14,
+      "Shaft": "Shaft-969767",
+      "SheetMetal": 5,
+      "Cost": 15,
+      "Static Pressure": 2,
+      "Edges": [
+        {
+          "Node1": 11,
+          "Node2": 12,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 8,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 14,
+          "Node2": 6,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 10,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 5,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 9,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 13,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 13,
+          "Node2": 4,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 3,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 16,
+          "Node2": 2,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 1,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 7,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        }
+      ]
+    },
+    {
+      "Id": 15,
+      "Shaft": "Shaft-969767",
+      "SheetMetal": 5,
+      "Cost": 15,
+      "Static Pressure": 2,
+      "Edges": [
+        {
+          "Node1": 11,
+          "Node2": 12,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 8,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 14,
+          "Node2": 6,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 10,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 5,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 13,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 9,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 13,
+          "Node2": 4,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 3,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 16,
+          "Node2": 2,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 1,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 7,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        }
+      ]
+    },
+    {
+      "Id": 16,
+      "Shaft": "Shaft-969767",
+      "SheetMetal": 5,
+      "Cost": 15,
+      "Static Pressure": 2,
+      "Edges": [
+        {
+          "Node1": 11,
+          "Node2": 12,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 8,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 7,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 15,
+          "Node2": 2,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 1,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 14,
+          "Node2": 6,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 10,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 5,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 9,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 13,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 13,
+          "Node2": 4,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 3,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        }
+      ]
+    },
+    {
+      "Id": 17,
+      "Shaft": "Shaft-969767",
+      "SheetMetal": 5,
+      "Cost": 15,
+      "Static Pressure": 2,
+      "Edges": [
+        {
+          "Node1": 11,
+          "Node2": 12,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 8,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 7,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 15,
+          "Node2": 2,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 1,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 14,
+          "Node2": 6,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 10,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 5,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 13,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 9,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 13,
+          "Node2": 4,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 3,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        }
+      ]
+    },
+    {
+      "Id": 18,
+      "Shaft": "Shaft-969767",
+      "SheetMetal": 5,
+      "Cost": 15,
+      "Static Pressure": 2,
+      "Edges": [
+        {
+          "Node1": 11,
+          "Node2": 12,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 8,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 7,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 15,
+          "Node2": 2,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 1,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 14,
+          "Node2": 6,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 10,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 5,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 9,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 13,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 13,
+          "Node2": 4,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 3,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        }
+      ]
+    },
+    {
+      "Id": 19,
+      "Shaft": "Shaft-969767",
+      "SheetMetal": 5,
+      "Cost": 15,
+      "Static Pressure": 2,
+      "Edges": [
+        {
+          "Node1": 11,
+          "Node2": 12,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 8,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 7,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 15,
+          "Node2": 2,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 1,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 14,
+          "Node2": 6,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 5,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 10,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 13,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 9,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 13,
+          "Node2": 4,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 3,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        }
+      ]
+    },
+    {
+      "Id": 20,
+      "Shaft": "Shaft-969767",
+      "SheetMetal": 5,
+      "Cost": 15,
+      "Static Pressure": 2,
+      "Edges": [
+        {
+          "Node1": 11,
+          "Node2": 12,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 8,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 7,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 15,
+          "Node2": 2,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 1,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 14,
+          "Node2": 6,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 10,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 5,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 9,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 13,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 13,
+          "Node2": 4,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 3,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        }
+      ]
+    },
+    {
+      "Id": 21,
+      "Shaft": "Shaft-969767",
+      "SheetMetal": 5,
+      "Cost": 15,
+      "Static Pressure": 2,
+      "Edges": [
+        {
+          "Node1": 11,
+          "Node2": 12,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 8,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 7,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 15,
+          "Node2": 2,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 1,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 14,
+          "Node2": 6,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 10,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 5,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 13,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 9,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 13,
+          "Node2": 4,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 3,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        }
+      ]
+    },
+    {
+      "Id": 22,
+      "Shaft": "Shaft-969767",
+      "SheetMetal": 5,
+      "Cost": 15,
+      "Static Pressure": 2,
+      "Edges": [
+        {
+          "Node1": 11,
+          "Node2": 12,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 8,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 7,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 15,
+          "Node2": 2,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 1,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 14,
+          "Node2": 6,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 10,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 5,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 9,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 13,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 13,
+          "Node2": 4,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 3,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        }
+      ]
+    },
+    {
+      "Id": 23,
+      "Shaft": "Shaft-969767",
+      "SheetMetal": 5,
+      "Cost": 15,
+      "Static Pressure": 2,
+      "Edges": [
+        {
+          "Node1": 11,
+          "Node2": 12,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 8,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 7,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 15,
+          "Node2": 2,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 1,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 14,
+          "Node2": 6,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 10,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 5,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 13,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 9,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 13,
+          "Node2": 4,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 3,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        }
+      ]
+    },
+    {
+      "Id": 24,
+      "Shaft": "Shaft-969767",
+      "SheetMetal": 5,
+      "Cost": 15,
+      "Static Pressure": 2,
+      "Edges": [
+        {
+          "Node1": 11,
+          "Node2": 12,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 8,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 7,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 15,
+          "Node2": 2,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 1,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 16,
+          "Node2": 4,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 13,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 3,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 14,
+          "Node2": 6,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 10,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 5,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 9,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 13,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        }
+      ]
+    },
+    {
+      "Id": 25,
+      "Shaft": "Shaft-969767",
+      "SheetMetal": 5,
+      "Cost": 15,
+      "Static Pressure": 2,
+      "Edges": [
+        {
+          "Node1": 11,
+          "Node2": 12,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 8,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 7,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 15,
+          "Node2": 2,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 1,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 16,
+          "Node2": 4,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 13,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 3,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 14,
+          "Node2": 6,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 10,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 5,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 13,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 9,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        }
+      ]
+    },
+    {
+      "Id": 26,
+      "Shaft": "Shaft-969767",
+      "SheetMetal": 5,
+      "Cost": 15,
+      "Static Pressure": 2,
+      "Edges": [
+        {
+          "Node1": 11,
+          "Node2": 12,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 8,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 7,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 15,
+          "Node2": 2,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 1,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 16,
+          "Node2": 4,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 3,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 14,
+          "Node2": 6,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 10,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 5,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 9,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        }
+      ]
+    },
+    {
+      "Id": 27,
+      "Shaft": "Shaft-969767",
+      "SheetMetal": 5,
+      "Cost": 15,
+      "Static Pressure": 2,
+      "Edges": [
+        {
+          "Node1": 11,
+          "Node2": 12,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 8,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 7,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 15,
+          "Node2": 2,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 1,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 16,
+          "Node2": 4,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 13,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 3,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 14,
+          "Node2": 6,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 5,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 13,
+          "Node2": 10,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 9,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        }
+      ]
+    },
+    {
+      "Id": 28,
+      "Shaft": "Shaft-969767",
+      "SheetMetal": 5,
+      "Cost": 15,
+      "Static Pressure": 2,
+      "Edges": [
+        {
+          "Node1": 11,
+          "Node2": 12,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 8,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 7,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 15,
+          "Node2": 2,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 1,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 16,
+          "Node2": 4,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 13,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 3,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 13,
+          "Node2": 10,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 6,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 9,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 5,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        }
+      ]
+    },
+    {
+      "Id": 29,
+      "Shaft": "Shaft-969767",
+      "SheetMetal": 5,
+      "Cost": 15,
+      "Static Pressure": 2,
+      "Edges": [
+        {
+          "Node1": 11,
+          "Node2": 12,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 8,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 7,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 15,
+          "Node2": 2,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 1,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 16,
+          "Node2": 4,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 13,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 3,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 13,
+          "Node2": 10,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 9,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 6,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 5,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        }
+      ]
+    },
+    {
+      "Id": 30,
+      "Shaft": "Shaft-969767",
+      "SheetMetal": 5,
+      "Cost": 15,
+      "Static Pressure": 2,
+      "Edges": [
+        {
+          "Node1": 11,
+          "Node2": 12,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 8,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 7,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 15,
+          "Node2": 2,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 1,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 16,
+          "Node2": 4,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 13,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 3,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 13,
+          "Node2": 10,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 6,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 9,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 14,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 5,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        }
+      ]
+    },
+    {
+      "Id": 31,
+      "Shaft": "Shaft-969767",
+      "SheetMetal": 5,
+      "Cost": 15,
+      "Static Pressure": 2,
+      "Edges": [
+        {
+          "Node1": 11,
+          "Node2": 12,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 12,
+          "Node2": 8,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 15,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 8,
+          "Node2": 7,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 15,
+          "Node2": 2,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 16,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 2,
+          "Node2": 1,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 16,
+          "Node2": 4,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 13,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 4,
+          "Node2": 3,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 13,
+          "Node2": 10,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 9,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 10,
+          "Node2": 6,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        },
+        {
+          "Node1": 6,
+          "Node2": 5,
+          "Distance": 20,
+          "Diameter": 1.5,
+          "Airflow": 1000
+        }
+      ]
+    }
+  ]
+}

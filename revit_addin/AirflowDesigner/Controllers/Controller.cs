@@ -52,7 +52,10 @@ namespace AirflowDesigner.Controllers
 
             foreach( var vav in VAVs)
             {
-                XYZ location = normalizeZ((vav.Location as LocationPoint).Point);
+                XYZ location = (vav.Location as LocationPoint).Point;
+                Connector c = MEPController.GetProperConnector(vav, FlowDirectionType.In, DuctSystemType.SupplyAir);
+                if (c != null) location = c.Origin;
+                location = normalizeZ(location);
 
                 Objects.Node n = new Objects.Node() { Location = location, Name = "VAV-" + vav.Id.IntegerValue, NodeType = Objects.Node.NodeTypeEnum.Vav };
                
@@ -117,6 +120,38 @@ namespace AirflowDesigner.Controllers
                 Objects.Edge edge = new Objects.Edge() { Node1 = connNode.Id, Node2 = n.Id, Distance = (connNode.Location.DistanceTo(n.Location)) };
                 log("Made edge from " + connNode.Name + " to " + n.Name);
                 edges.Add(edge);
+            }
+
+            // see if we have any corridor line intersects/overlaps
+            for (int i=0; i<corridorLines.Count;i++)
+            {
+                for (int j=i+1; j<corridorLines.Count;j++)
+                {
+                    log("Checking Corrdor Lines " + i + " vs. " + j);
+
+                    IntersectionResultArray outInts = null;
+                    var result = corridorLines[i].Intersect(corridorLines[j], out outInts);
+                    log("  => result: " + result);
+                    switch (result)
+                    {
+
+                        case SetComparisonResult.Overlap:
+                            foreach( IntersectionResult res in outInts)
+                            {
+                                XYZ tmp = normalizeZ(res.XYZPoint);
+
+                                Objects.Node n1 = lookupExisting(tmp, nodes);
+                                if (n1 == null)
+                                {
+                                    n1 = new Objects.Node() { Location = res.XYZPoint, NodeType = Objects.Node.NodeTypeEnum.Other, Name = "CorridorOverlap" };
+                                    nodes.Add(n1);
+                                }
+                            }
+                            break;
+                    }
+
+
+                }
             }
 
             // then we need to connect the corridor nodes 
@@ -195,7 +230,8 @@ namespace AirflowDesigner.Controllers
         {
             string json = System.IO.File.ReadAllText(filename);
 
-            Objects.Results res = Newtonsoft.Json.JsonConvert.DeserializeObject<Objects.Results>(json);
+            Objects.Results res = Newtonsoft.Json.JsonConvert.DeserializeObject<Objects.Results>(json,
+                                    new Newtonsoft.Json.JsonConverter[] { new Objects.XYZDeserializer()});
 
             return res;
         }
@@ -213,19 +249,74 @@ namespace AirflowDesigner.Controllers
             return _uiDoc.Document.PathName.Replace(".rvt", "");
         }
 
-        public void DrawSolution(Objects.Solution sol, IList<Objects.Node> nodes)
+        public void DrawSolution(Objects.Solution sol, IList<Objects.Node> nodes, ElementId system, ElementId ductType)
         {
+            Transaction t = null;
+            if(_uiDoc.Document.IsModifiable == false)
+            {
+                t = new Transaction(_uiDoc.Document, "Create Ductwork");
+                t.Start();
+            }
+
             Utilities.AVFUtility.Clear(_uiDoc);
 
-            foreach( var edge in sol.Edges)
+
+            // start with the corridor
+            IList<Objects.Edge> corrEdges = sol.GetCorridorEdges(nodes);
+
+            List<Duct> corrDucts = new List<Duct>();
+            List<Duct> allDucts = new List<Duct>();
+            SubTransaction st = new SubTransaction(_uiDoc.Document);
+            st.Start();
+            foreach( var edge in corrEdges )
             {
                 Objects.Node n1 = nodes.Single(n => n.Id == edge.Node1);
                 Objects.Node n2 = nodes.Single(n => n.Id == edge.Node2);
 
+                Duct d = 
+                    MEPController.MakeDuct(_uiDoc.Document, n1.Location, n2.Location, ductType, system, edge.Diameter, 0.0);
+
+                corrDucts.Add(d);
+                allDucts.Add(d);
 
             }
+            st.Commit();
+            _uiDoc.Document.Regenerate();
+
+            IList<FamilyInstance> fittings = MEPController.JoinDucts(corrDucts);
+
+            IList<Objects.Edge> vavEdges = sol.GetVAVEdges(nodes);
+
+            IList<MEPCurve> crvDucts = corrDucts.Cast<MEPCurve>().ToList();
+
+            foreach ( var edge in vavEdges)
+            {
+                //Objects.Node n1 = nodes.Single(n => n.Id == edge.Node1);
+                //Objects.Node n2 = nodes.Single(n => n.Id == edge.Node2);
+
+                //MEPController.MakeDuct(_uiDoc.Document, n1.Location, n2.Location, ductType, system, edge.Diameter, 0.0);
+
+                Duct d = createVAVConnection(edge, ductType, system, nodes, crvDucts, fittings);
+
+
+            }
+
+            IList<Objects.Edge> shaftEdges = sol.GetShaftEdges(nodes);
+
+            foreach( var edge in shaftEdges )
+            {
+                Objects.Node n1 = nodes.Single(n => n.Id == edge.Node1);
+                Objects.Node n2 = nodes.Single(n => n.Id == edge.Node2);
+
+                MEPController.MakeDuct(_uiDoc.Document, n1.Location, n2.Location, ductType, system, edge.Diameter, 0.0);
+
+            }
+
+            if (t != null) t.Commit();
         }
-        public void ShowSolution(Objects.Solution sol, IList<Objects.Node> nodes)
+        public Autodesk.Revit.DB.Document GetDocument() { return _uiDoc.Document; }
+
+        public void ShowSolution(Objects.Solution sol, IList<Objects.Node> nodes, string colorBy)
         {
             Utilities.AVFUtility.Clear(_uiDoc);
 
@@ -238,7 +329,18 @@ namespace AirflowDesigner.Controllers
 
                 var cyl = Utilities.GeometryCreationUtils.CreateCylinder(_uiDoc.Application.Application, n1.Location, n2.Location.Subtract(n1.Location).Normalize(), edge.Diameter / 2.0, n1.Location.DistanceTo(n2.Location));
                 solids.Add(cyl);
-                values.Add(edge.Diameter);
+
+                double val = 0;
+                switch (colorBy)
+                {
+                    case "Diameter":
+                        val = edge.Diameter;
+                        break;
+                    case "Airflow":
+                        val = edge.Airflow;
+                        break;
+                }
+                values.Add(val);
 
             }
 
@@ -406,6 +508,85 @@ namespace AirflowDesigner.Controllers
         #endregion
 
         #region PrivateMethods
+        private Duct createVAVConnection(Objects.Edge edge, ElementId ductType, ElementId system, IList<Objects.Node> nodes, IList<MEPCurve> curves, IList<FamilyInstance> fittings)
+        {
+            Objects.Node n1 = nodes.Single(n => n.Id == edge.Node1);
+            Objects.Node n2 = nodes.Single(n => n.Id == edge.Node2);
+
+            Objects.Node vavNode = n1;
+            if (n1.NodeType != Objects.Node.NodeTypeEnum.Vav) vavNode = n2;
+
+            Objects.Node corrNode = n1;
+            if (n1.NodeType != Objects.Node.NodeTypeEnum.Other) corrNode = n2;
+
+            // find the nearest VAV to vavNode;
+
+            // determine if we need to shift the connector on the corridor
+            var fi = isFittingAtPoint(corrNode.Location, fittings, 0.1);
+
+            MEPCurve toConnect = null;
+            if (fi != null)
+            {
+                MEPController.MoveFittingAway(fi, edge.Diameter, out toConnect);
+            }
+
+            Duct d =
+                MEPController.MakeDuct(_uiDoc.Document, vavNode.Location, corrNode.Location, ductType, system, edge.Diameter, 0.0);
+
+            Connector tap = MEPController.GetNearestConnector(d, corrNode.Location);
+           
+            if (toConnect == null)
+            {
+                toConnect = findNearestCurve(corrNode.Location, curves, 0.05);
+            }
+
+            FamilyInstance fi2 = MEPController.MakeTakeOff(tap, toConnect);
+            if (fi2 != null) fittings.Add(fi2);
+
+            return d;
+
+
+        }
+
+        private FamilyInstance isFittingAtPoint(XYZ pt, IList<FamilyInstance> fis, double tolerance)
+        {
+            foreach( FamilyInstance fi in fis )
+            {
+                if (fi.MEPModel == null) continue;
+                foreach( Connector c in fi.MEPModel.ConnectorManager.Connectors)
+                {
+                    double dist = c.Origin.DistanceTo(pt);
+                    if (dist < tolerance) return fi;
+                }
+            }
+
+            return null;
+        }
+
+        private MEPCurve findNearestCurve(XYZ pt, IList<MEPCurve> curves, double tolerance)
+        {
+            double nearest = 9999999;
+            MEPCurve nearestCrv = null;
+            foreach (MEPCurve crv in curves)
+            {
+                LocationCurve lc = crv.Location as LocationCurve;
+                if (lc != null)
+                {
+                    var result = lc.Curve.Project(pt);
+                    if ((result != null) && (result.Distance < tolerance))
+                    {
+                        if (result.Distance < nearest)
+                        {
+                            nearest = result.Distance;
+                            nearestCrv = crv;
+                        }
+                    }
+                }
+            }
+
+            return nearestCrv;
+        }
+
 
         private IList<Objects.Node> getNodesOnLine(Line cl, IList<Objects.Node> nodes)
         {

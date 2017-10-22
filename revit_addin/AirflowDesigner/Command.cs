@@ -18,6 +18,8 @@ namespace AirflowDesigner
             try
             {
 
+                Utilities.WindowsUtils.CloseAll(); // Close any open modeless windows we know about.
+
                 Form1 f = new Form1(new Controllers.Controller(commandData.Application.ActiveUIDocument));
 
                 f.ShowDialog();

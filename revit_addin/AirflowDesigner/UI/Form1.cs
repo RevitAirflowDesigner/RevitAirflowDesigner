@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -76,6 +77,18 @@ namespace AirflowDesigner
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
+
+                ProcessStartInfo pythonInfo = new ProcessStartInfo();
+                Process python;
+                pythonInfo.FileName = @"C:\ProgramData\Anaconda3\python.exe";
+                pythonInfo.Arguments = @"C:\Users\ahanif\Desktop\python_script\test.py";
+                pythonInfo.CreateNoWindow = false;
+                pythonInfo.UseShellExecute = true;
+
+                Console.WriteLine("Python Starting");
+                python = Process.Start(pythonInfo);
+                python.WaitForExit();
+                python.Close();
 
             }
             catch (Exception ex)

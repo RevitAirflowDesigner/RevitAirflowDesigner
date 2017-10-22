@@ -17,8 +17,10 @@ namespace AirflowDesigner.UI
         private enum ActionEnum { None, Show, DrawRoute };
         private ActionEnum _action = ActionEnum.None;
         private Objects.Results _results;
+        private int _lastSortCol = 1;
+        private ListSortDirection _lastDir;
 
-        public Load(Controllers.Controller c, Autodesk.Revit.UI.UIApplication uiApp)
+        public Load(Controllers.Controller c, Autodesk.Revit.UI.UIApplication uiApp, string filename = null)
         {
             InitializeComponent();
             _controller = c;
@@ -30,6 +32,19 @@ namespace AirflowDesigner.UI
             _action = ActionEnum.None;
 
             btn_Generate.Enabled = false;
+            cbColorBy.Items.Add("Diameter");
+            cbColorBy.Items.Add("Airflow");
+            cbColorBy.SelectedIndex = 0;
+
+            try
+            {
+                if (filename != null) loadResults(filename);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Loading Issue: " + ex.GetType().Name + ": " + ex.Message);
+            }
+            
 
         }
        
@@ -45,6 +60,9 @@ namespace AirflowDesigner.UI
                     performShow();
                     break;
 
+                case ActionEnum.DrawRoute:
+                    performCreate();
+                    break;
 
                
             }
@@ -52,6 +70,30 @@ namespace AirflowDesigner.UI
         }
 
        
+        private void performCreate()
+        {
+            try
+            {
+                if (dataGridView1.SelectedRows.Count > 0)
+                {
+                    Objects.Solution sol = dataGridView1.SelectedRows[0].DataBoundItem as Objects.Solution;
+                    if (sol != null)
+                    {
+
+                        UI.CreateForm create = new CreateForm(_controller, sol, _results.Nodes);
+                        if (create.ShowDialog(this) == DialogResult.OK)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.GetType().Name + ": " + ex.Message);
+            }
+        }
 
         private void btn_Close_Click(object sender, EventArgs e)
         {
@@ -70,10 +112,7 @@ namespace AirflowDesigner.UI
                 if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
                 {
 
-                    _results = _controller.DeSerialize(openFileDialog1.FileName);
-
-                    dataGridView1.DataSource = _results.Solutions;
-                    dataGridView1.Update();
+                    loadResults(openFileDialog1.FileName);
                 }
 
             }
@@ -82,6 +121,17 @@ namespace AirflowDesigner.UI
                 MessageBox.Show("Error: " + ex.GetType().Name + ": " + ex.Message + Environment.NewLine + ex.StackTrace);
             }
 
+        }
+
+        private void loadResults(string filename)
+        {
+            _results = _controller.DeSerialize(filename);
+
+            // hoops to make it sortable
+            UI.SortableBindingList<Objects.Solution> solutions = new UI.SortableBindingList<Objects.Solution>(_results.Solutions);
+
+            dataGridView1.DataSource = solutions;
+            dataGridView1.Update();
         }
 
         private void performShow()
@@ -93,7 +143,7 @@ namespace AirflowDesigner.UI
                     Objects.Solution sol = dataGridView1.SelectedRows[0].DataBoundItem as Objects.Solution;
                     if (sol != null)
                     {
-                        _controller.ShowSolution(sol, _results.Nodes);
+                        _controller.ShowSolution(sol, _results.Nodes, cbColorBy.SelectedItem.ToString());
                     }
                     btn_Generate.Enabled = true;
                 }
@@ -113,7 +163,9 @@ namespace AirflowDesigner.UI
                     Objects.Solution sol = dataGridView1.SelectedRows[0].DataBoundItem as Objects.Solution;
                     if (sol != null)
                     {
-                        _controller.ShowSolution(sol, _results.Nodes);
+                        string colorBy = cbColorBy.SelectedItem.ToString();
+
+                        _controller.ShowSolution(sol, _results.Nodes, colorBy);
 
                         this.DialogResult = DialogResult.OK;
                         this.Close();
@@ -134,6 +186,41 @@ namespace AirflowDesigner.UI
         private void onRowSelected(object sender, EventArgs e)
         {
             _action = ActionEnum.Show;
+        }
+
+        private void btn_Generate_Click(object sender, EventArgs e)
+        {
+            _action = ActionEnum.DrawRoute;
+        }
+
+        private void onCellHeaderClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            ListSortDirection dir = ListSortDirection.Ascending;
+
+            if ((_lastSortCol == -1)||(_lastSortCol != e.ColumnIndex))
+            {
+                dir = ListSortDirection.Ascending;
+                dataGridView1.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection = SortOrder.Ascending;
+            }
+            else
+            {
+                if (_lastSortCol == e.ColumnIndex)
+                {
+                    // reverse
+                    dir = (dataGridView1.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection == SortOrder.Ascending) ? ListSortDirection.Descending : ListSortDirection.Ascending;
+
+                }
+                else
+                {
+                    dir = ListSortDirection.Descending;
+                    dataGridView1.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection = SortOrder.Descending;
+                }
+            }
+
+
+            dataGridView1.Sort(dataGridView1.Columns[e.ColumnIndex], dir);
+            _lastSortCol = e.ColumnIndex;
+
         }
     }
 }
