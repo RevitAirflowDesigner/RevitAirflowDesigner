@@ -143,7 +143,7 @@ namespace AirflowDesigner.Controllers
                                 Objects.Node n1 = lookupExisting(tmp, nodes);
                                 if (n1 == null)
                                 {
-                                    new Objects.Node() { Location = res.XYZPoint, NodeType = Objects.Node.NodeTypeEnum.Other, Name = "CorridorOverlap" };
+                                    n1 = new Objects.Node() { Location = res.XYZPoint, NodeType = Objects.Node.NodeTypeEnum.Other, Name = "CorridorOverlap" };
                                     nodes.Add(n1);
                                 }
                             }

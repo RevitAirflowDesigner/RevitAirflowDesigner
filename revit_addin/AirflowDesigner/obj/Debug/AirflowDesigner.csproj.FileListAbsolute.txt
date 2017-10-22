@@ -151,3 +151,12 @@ C:\CTD_Projects\RevitAirflowDesigner\revit_addin\AirflowDesigner\obj\Debug\Airfl
 C:\CTD_Projects\RevitAirflowDesigner\revit_addin\AirflowDesigner\obj\Debug\AirflowDesigner.UI.Load.resources
 C:\Users\mmason\Source\Repos\RevitAirflowDesigner\revit_addin\AirflowDesigner\obj\Debug\AirflowDesigner.UI.Load.resources
 C:\Users\mmason\Source\Repos\RevitAirflowDesigner\revit_addin\AirflowDesigner\obj\Debug\AirflowDesigner.UI.CreateForm.resources
+C:\Users\mmason\Source\Repos\RevitAirflowDesigner\revit_addin\AirflowDesigner\bin\Debug\LiveCharts.dll
+C:\Users\mmason\Source\Repos\RevitAirflowDesigner\revit_addin\AirflowDesigner\bin\Debug\LiveCharts.WinForms.dll
+C:\Users\mmason\Source\Repos\RevitAirflowDesigner\revit_addin\AirflowDesigner\bin\Debug\LiveCharts.Wpf.dll
+C:\Users\mmason\Source\Repos\RevitAirflowDesigner\revit_addin\AirflowDesigner\bin\Debug\LiveCharts.pdb
+C:\Users\mmason\Source\Repos\RevitAirflowDesigner\revit_addin\AirflowDesigner\bin\Debug\LiveCharts.xml
+C:\Users\mmason\Source\Repos\RevitAirflowDesigner\revit_addin\AirflowDesigner\bin\Debug\LiveCharts.WinForms.pdb
+C:\Users\mmason\Source\Repos\RevitAirflowDesigner\revit_addin\AirflowDesigner\bin\Debug\LiveCharts.WinForms.xml
+C:\Users\mmason\Source\Repos\RevitAirflowDesigner\revit_addin\AirflowDesigner\bin\Debug\LiveCharts.Wpf.pdb
+C:\Users\mmason\Source\Repos\RevitAirflowDesigner\revit_addin\AirflowDesigner\bin\Debug\LiveCharts.Wpf.xml
