@@ -16,7 +16,7 @@ from itertools import product
 class BaseGraph:
     def __init__(self, inputs):
         self.inputs = inputs
-        self.shaft_name = None
+        self.shaft_names = {}
         self.edge_list = None
         self.start_list = None
         self.end_list = None
@@ -39,7 +39,7 @@ class BaseGraph:
         for i, val in enumerate(self.inputs['Nodes']):
             if val['NodeType'] == 'Shaft':
                 start_list.append(val['Id'])
-                self.shaft_name = val['Name']
+                self.shaft_names.update({str(val['Id']): val['Name']})
             if val['NodeType'] == 'Vav':
                 end_list.append(val['Id'])
 
@@ -280,7 +280,7 @@ if __name__== "__main__":
     # Loop for each shaft option
 
     for start_node in base_graph.start_list:
-        route_options = RouteOptions(base_graph.graph, base_graph.shaft_name, start_node, base_graph.end_list)
+        route_options = RouteOptions(base_graph.graph, base_graph.shaft_names[str(start_node)], start_node, base_graph.end_list)
         route_options.create_all_paths_to_each_target()
         route_options.create_all_path_combinations()
         route_options.create_graph_options()
