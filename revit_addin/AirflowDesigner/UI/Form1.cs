@@ -73,19 +73,23 @@ namespace AirflowDesigner
 
                     MessageBox.Show("The duct network has been saved." +Environment.NewLine + 
                                     "  # of Nodes: " + network.Nodes.Count + Environment.NewLine + 
-                                    "  # of Edges: " + network.Edges.Count);
+                                    "  # of Edges: " + network.Edges.Count + Environment.NewLine + Environment.NewLine + 
+                                    "Launching Analysis");
 
                     var results = _controller.Calculate(saveFileDialog1.FileName);
 
                     if (results.Error == false)
                     {
                         // launch the results form.
+                        launchResults(results);
 
                     }
                     else
                     {
                         MessageBox.Show("An error occurred while analyzing the data: " + results.ErrorMessage);
                     }
+
+                    
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }

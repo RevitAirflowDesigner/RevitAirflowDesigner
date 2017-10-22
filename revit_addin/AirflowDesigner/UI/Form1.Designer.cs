@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.llVAV = new System.Windows.Forms.LinkLabel();
             this.label2 = new System.Windows.Forms.Label();
@@ -36,6 +37,7 @@
             this.btnGo = new System.Windows.Forms.Button();
             this.llCorridors = new System.Windows.Forms.LinkLabel();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -59,6 +61,7 @@
             this.llVAV.TabIndex = 1;
             this.llVAV.TabStop = true;
             this.llVAV.Text = "Number of VAV boxes:";
+            this.toolTip1.SetToolTip(this.llVAV, "MechanicalEquipment in the current view with SCHEDULE_TYPE=AIR_TERMINAL_BOX");
             // 
             // label2
             // 
@@ -78,6 +81,7 @@
             this.llSpaces.TabIndex = 3;
             this.llSpaces.TabStop = true;
             this.llSpaces.Text = "Number of Spaces:";
+            this.toolTip1.SetToolTip(this.llSpaces, "Spaces visible in the current view");
             // 
             // llShafts
             // 
@@ -88,6 +92,7 @@
             this.llShafts.TabIndex = 4;
             this.llShafts.TabStop = true;
             this.llShafts.Text = "Number of Proposed Shaft Locations:";
+            this.toolTip1.SetToolTip(this.llShafts, "GenericModel Family Instances in the current view with Name \'Mechanical Shaft\'");
             // 
             // btnGo
             // 
@@ -109,6 +114,7 @@
             this.llCorridors.TabIndex = 6;
             this.llCorridors.TabStop = true;
             this.llCorridors.Text = "Number of Corridor Lines:";
+            this.toolTip1.SetToolTip(this.llCorridors, "Model Lines in the current view with SubCategory \'DuctWork\'");
             // 
             // saveFileDialog1
             // 
@@ -143,5 +149,6 @@
         private System.Windows.Forms.Button btnGo;
         private System.Windows.Forms.LinkLabel llCorridors;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

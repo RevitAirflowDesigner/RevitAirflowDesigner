@@ -66,6 +66,7 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClearCommand.cs" />
     <Compile Include="Controllers\MEPController.cs" />
     <Compile Include="Objects\AnalysisResults.cs" />
     <Compile Include="UI\CreateForm.cs">
