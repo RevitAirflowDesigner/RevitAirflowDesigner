@@ -52,7 +52,10 @@ namespace AirflowDesigner.Controllers
 
             foreach( var vav in VAVs)
             {
-                XYZ location = normalizeZ((vav.Location as LocationPoint).Point);
+                XYZ location = (vav.Location as LocationPoint).Point;
+                Connector c = MEPController.GetProperConnector(vav, FlowDirectionType.In, DuctSystemType.SupplyAir);
+                if (c != null) location = c.Origin;
+                location = normalizeZ(location);
 
                 Objects.Node n = new Objects.Node() { Location = location, Name = "VAV-" + vav.Id.IntegerValue, NodeType = Objects.Node.NodeTypeEnum.Vav };
                

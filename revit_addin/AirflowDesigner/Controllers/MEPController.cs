@@ -116,6 +116,18 @@ namespace AirflowDesigner.Controllers
             return d;
         }
 
+        public static Connector GetProperConnector(FamilyInstance fi, FlowDirectionType dir, DuctSystemType dst)
+        {
+            if (fi.MEPModel == null) return null;
+
+            foreach( Connector conn in fi.MEPModel.ConnectorManager.Connectors)
+            {
+                if ((conn.Direction == dir) && (conn.DuctSystemType == dst)) return conn;
+            }
+
+            return null;
+        }
+
         public static void JoinDucts(IList<Duct> ducts)
         {
             // we want to go through the ducts.
