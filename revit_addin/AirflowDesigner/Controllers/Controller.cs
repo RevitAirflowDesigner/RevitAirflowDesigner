@@ -216,7 +216,7 @@ namespace AirflowDesigner.Controllers
             foreach( var node in nw.Nodes)
             {
                 // draw a circle...
-                Utilities.GeometryCreationUtils.DrawCircle(_uiDoc.Document, _uiDoc.ActiveGraphicalView.SketchPlane.GetPlane(), _uiDoc.ActiveGraphicalView.SketchPlane, 1.0);
+                // Utilities.GeometryCreationUtils.DrawCircle(_uiDoc.Document, Plane.CreateByNormalAndOrigin( XYZ.BasisZ, node.Location), _uiDoc.ActiveGraphicalView.SketchPlane, 1.0);
             }
 
             List<Line> lines = new List<Line>();
