@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="*" Name="Revit Airflow Designer" Language="1033" Version="0.9.0.0" Manufacturer="Team Airflow: AEC Hackathon 2017" UpgradeCode="ae6ba890-7923-41db-b83f-1dfe40750643">
+  <Product Id="*" Name="Revit Airflow Designer" Language="1033" Version="0.9.1.0" Manufacturer="Team Airflow: AEC Hackathon 2017" UpgradeCode="ae6ba890-7923-41db-b83f-1dfe40750643">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
@@ -9,6 +9,9 @@
     <Feature Id="Revit2018Install" Title="Revit 2018" Level="1">
       <ComponentRef Id="Addin2018" />
       <ComponentRef Id="AirflowDLL2018" />
+      <ComponentRef Id="NewtonSoft.dll2018"/>
+      <ComponentRef Id="LiveCharts.dll2018"/>
+      <ComponentRef Id="LiveChartsWF.dll2018"/>
     </Feature>
 
   </Product>
@@ -51,7 +54,15 @@
         <File Id="Airflow.py" Name="RevitAirflowDesigner.py" Source="$(var.ProjectDir)\..\AirflowDesigner\bin\Release\RevitAirflowDesigner.py" Checksum="no"/>
         <File Id="VAV.dyn" Name="VAV Placement.dyn" Source="$(var.ProjectDir)\..\..\Dynamo\VAV Placement.dyn" Checksum="no"/>
       </Component>
-
+      <Component Id="NewtonSoft.dll2018" Guid="{1064C19B-85C7-4E54-8131-172D6864F712}" DiskId="1">
+        <File Id="NewtonSoft.2018" Name="NewtonSoft.Json.dll" Source="$(var.ProjectDir)\..\AirflowDesigner\bin\Release\NewtonSoft.Json.dll" Checksum="no"/>
+      </Component>
+      <Component Id="LiveCharts.dll2018" Guid="{3466A20C-85C7-4E54-8131-172D6864F712}" DiskId="1">
+        <File Id="LiveCharts.2018" Name="LiveCharts.dll" Source="$(var.ProjectDir)\..\AirflowDesigner\bin\Release\LiveCharts.dll" Checksum="no"/>
+      </Component>
+      <Component Id="LiveChartsWF.dll2018" Guid="{1236A20D-75C7-4E54-8131-172D6864F712}" DiskId="1">
+        <File Id="LiveChartsWF.2018" Name="LiveCharts.WinForms.dll" Source="$(var.ProjectDir)\..\AirflowDesigner\bin\Release\LiveCharts.WinForms.dll" Checksum="no"/>
+      </Component>
     </DirectoryRef>
 
   </Fragment>
