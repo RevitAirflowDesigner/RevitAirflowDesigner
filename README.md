@@ -6,6 +6,7 @@
 
 # Dynamo script
 * Place VAV Boxes
+* Place ceiling diffusers in grid
 
 # Revit add-in
 * Generate a mesh of nodes and edge connections
